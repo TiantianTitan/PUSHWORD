@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>XC_PC3R_PROJET</name>
+	<name>demo</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -10,13 +10,19 @@
 			<arguments>
 			</arguments>
 		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.m2e.core.maven2Builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
 	</buildSpec>
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
+		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1710421594202</id>
+			<id>1710421594207</id>
 			<name></name>
 			<type>30</type>
 			<matcher>
