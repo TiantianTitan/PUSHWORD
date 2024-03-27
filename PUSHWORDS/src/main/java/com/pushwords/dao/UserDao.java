@@ -30,8 +30,7 @@ public class UserDao {
 
             if(resultSet.next()){
                 user = new User();
-
-                user.setUserId(resultSet,getInt("userId"));
+                user.setUserId(resultSet.getInt("userId"));
             }
 
 
