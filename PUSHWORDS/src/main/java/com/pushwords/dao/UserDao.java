@@ -31,17 +31,18 @@ public class UserDao {
             if(resultSet.next()){
                 user = new User();
                 user.setUserId(resultSet.getInt("userId"));
+                user.setUname(userName);
+                user.setHead(resultSet.getString("head"));
+                user.setMood(resultSet.getString("mood"));
+                user.setNick(resultSet.getString("nick"));
+                user.setUpwd(resultSet.getString("upwd"));
             }
-
 
         }catch (Exception e){
             e.printStackTrace();
         }finally {
             DBUtil.close(resultSet,preparedStatement,connection);
         }
-
-
-
         return  user;
     }
 

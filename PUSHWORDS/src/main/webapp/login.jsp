@@ -51,6 +51,7 @@
             <input type="text" id="username" name="username" required>
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
+            <input name = "rem" type="checkbox" value="1" class="inputcheckbox"/> <label>remember me</label>
             <span id="msg" style="color: red;font-size: 12px" ></span>
             <br/>
             <br/>

@@ -1,0 +1,4 @@
+2024-03-27 18:58:20 [ main:0 ] - [ INFO ] Get the connection of database: com.mysql.cj.jdbc.ConnectionImpl@2de8284b
+2024-03-27 18:58:20 [ main:7 ] - [ INFO ] Get the connection of database com.mysql.cj.jdbc.ConnectionImpl@782663d3 
+2024-03-27 19:00:18 [ main:0 ] - [ INFO ] Get the connection of database: com.mysql.cj.jdbc.ConnectionImpl@2de8284b
+2024-03-27 19:00:18 [ main:9 ] - [ INFO ] Get the connection of database com.mysql.cj.jdbc.ConnectionImpl@782663d3 
