@@ -19,8 +19,7 @@
         </nav>
     </header>
     <main>
-        <h1>---------PUSHWORD----------</h1>
-        <h2>Magical tool for the words</h2>
+        <h1>Statics Page</h1>
 
         <!-- La zone de contenu principal -->
     </main>

@@ -1,0 +1,98 @@
+html, body {
+    height: 100%; /* 确保html和body元素高度充满整个视窗高度 */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* 设置主轴方向为垂直方向 */
+}
+
+body > .wrapper {
+    flex: 1; /* 使包装器能够伸缩，占据除 header 和 footer 之外的所有可用空间 */
+    display: flex;
+    flex-direction: column; /* 再次设置垂直方向，以确保主内容能够垂直扩展 */
+    justify-content: space-between; /* 分布空间，推动 footer 到底部 */
+}
+
+main {
+    flex: 1; /* 允许main元素填充所有可用空间 */
+}
+
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+}
+
+nav ul li a:hover {
+    background-color: #555;
+}
+
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* Ces classes peuvent être utilisées pour styler la zone de contenu sur différentes pages */
+.content {
+    max-width: 800px;
+    margin: auto;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.input-label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.submit-button {
+    background-color: #5cb85c;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #4cae4c;
+}
+
+/* Design réactif pour les appareils mobiles */
+@media (max-width: 600px) {
+    nav ul {
+        flex-direction: column;
+    }
+}

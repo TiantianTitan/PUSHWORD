@@ -19,8 +19,13 @@
         </nav>
     </header>
     <main>
-        <h1>---------PUSHWORD----------</h1>
-        <h2>Magical tool for the words</h2>
+        <h1>The lists of words</h1>
+        <h2>list1</h2>
+        <h2>list2</h2>
+        <h2>list3</h2>
+        <h2>list4</h2>
+        <h2>list5</h2>
+        <h2>list6</h2>
 
         <!-- La zone de contenu principal -->
     </main>

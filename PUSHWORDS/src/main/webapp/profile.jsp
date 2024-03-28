@@ -19,8 +19,10 @@
         </nav>
     </header>
     <main>
-        <h1>---------PUSHWORD----------</h1>
-        <h2>Magical tool for the words</h2>
+        <h1>Profil</h1>
+        <h2>Nick</h2>
+        <h2>Head</h2>
+        <h2>Mood</h2>
 
         <!-- La zone de contenu principal -->
     </main>
