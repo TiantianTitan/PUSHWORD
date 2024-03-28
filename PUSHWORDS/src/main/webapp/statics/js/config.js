@@ -2,16 +2,11 @@
 
 function checkLogin() {
     // 获取用户名和密码的值
-    var username = $("username").val();
-    var password = $("password").val()
-    //var username = document.getElementById('username').value;
-    //var password = document.getElementById('password').value;
+    var username = $("#username").val(); // Corrected the selector
+    var password = $("#password").val(); // Corrected the selector
 
     // 获取用于显示消息的元素
     var messageElement = document.getElementById('msg');
-
-
-
 
     // 检查用户名和密码是否为空
     if (username.trim() === '' || password.trim() === '') {
@@ -19,11 +14,6 @@ function checkLogin() {
         return false; // 防止进一步的表单提交逻辑
     } else {
         messageElement.textContent = ''; // 清除错误消息
-        $("#loginForm").submit();
-        //document.getElementById('loginForm').submit();
-        //alert('Login successful!'); // 演示目的显示登录成功消息
-        // 这里可以添加其他逻辑，如表单提交
-
+        $("#loginForm").submit(); // Assuming you have jQuery, this is correct
     }
 }
-

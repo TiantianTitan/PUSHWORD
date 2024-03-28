@@ -19,14 +19,17 @@ public class UserServlet extends HttpServlet {
     private UserService userService = new UserService();
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String actionName =  request.getParameter("actionName");
-        if("login".equals(actionName)){
-            // Login for User
+        String actionName = request.getParameter("actionName");
+        if("Login".equals(actionName)){
             try {
-                userLogin(request,response);
+                userLogin(request, response);
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
+                if (!response.isCommitted()) {
+                    response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                }
             }
+            return; // Return after handling the login to prevent calling super.service
         }
         super.service(request, response);
     }
