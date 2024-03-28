@@ -1,8 +1,14 @@
-<!DOC TYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Login Page</title>
+    <title>Login Page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="statics/js/config.js?version=1.1" type="text/javascript"></script>
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -41,21 +47,20 @@
     </style>
 </head>
 <body>
-    <script src="./statics/js/config.js" type=text/javascript></script>
-    <div class="login-container">
+ <div class="login-container">
         <form action="user" method="post" id="loginForm">
 
             <input type= "hidden" name="actionName" value="login"/>
 
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
+            <input type="text" id="userName" name="userName" autocomplete="current-username">
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+            <input type="password" id="userPwd" name="userPwd" autocomplete="current-password">
             <input name = "rem" type="checkbox" value="1" class="inputcheckbox"/> <label>remember me</label>
             <span id="msg" style="color: red;font-size: 12px" ></span>
             <br/>
             <br/>
-            <input type="button" value="login" onclick="checkLogin()">
+            <input type="button" value="Login" onclick="checkLogin()">
         </form>
     </div>
 </body>

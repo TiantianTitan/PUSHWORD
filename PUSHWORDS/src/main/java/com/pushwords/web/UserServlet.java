@@ -16,28 +16,39 @@ import java.sql.SQLException;
 @WebServlet("/user")
 public class UserServlet extends HttpServlet {
 
-    private UserService userService = new UserService();
+    private final UserService userService = new UserService();
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String actionName = request.getParameter("actionName");
-        if("Login".equals(actionName)){
+        if("login".equals(actionName)) {
+            userLogin(request, response);
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String actionName = request.getParameter("actionName");
+        if ("login".equals(actionName)) {
             try {
                 userLogin(request, response);
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
                 if (!response.isCommitted()) {
                     response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
                 }
             }
-            return; // Return after handling the login to prevent calling super.service
+        } else {
+            // Handle other POST requests or send an error if it's not supported.
+            response.sendError(HttpServletResponse.SC_NOT_IMPLEMENTED, "POST not supported for this action");
         }
-        super.service(request, response);
     }
 
-    private void userLogin(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+    private void userLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String userName = request.getParameter("username");
-        String userPwd = request.getParameter("password");
+        String userName = request.getParameter("userName");
+        System.out.println(userName);
+        String userPwd = request.getParameter("userPwd");
+        System.out.println(userPwd);
 
         ResultInfo<User> resultInfo = userService.userLogin(userName,userPwd);
 
@@ -55,8 +66,11 @@ public class UserServlet extends HttpServlet {
                 cookie.setMaxAge(0);
                 response.addCookie(cookie);
             }
+
+            response.sendRedirect("index.jsp");
         }else{
             request.setAttribute("resultInfo",resultInfo);
+
             request.getRequestDispatcher("login.jsp").forward(request,response);
         }
 

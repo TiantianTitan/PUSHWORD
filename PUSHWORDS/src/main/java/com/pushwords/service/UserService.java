@@ -10,10 +10,10 @@ import java.sql.SQLException;
 
 public class UserService {
 
-    private UserDao userDao = new UserDao();
+    private final UserDao userDao = new UserDao();
 
-    public ResultInfo<User> userLogin(String userName, String userPwd) throws SQLException {
-        ResultInfo<User> resultInfo = new  ResultInfo<User>();
+    public ResultInfo<User> userLogin(String userName, String userPwd)  {
+        ResultInfo<User> resultInfo = new  ResultInfo<>();
 
         User u = new User();
         u.setUname(userName);
@@ -29,17 +29,17 @@ public class UserService {
 
         User user = userDao.queryUserByName(userName);
 
+
         if(user == null){
             resultInfo.setCode(0);
             resultInfo.setMsg("userName not found!");
             return resultInfo;
         }
 
-        userPwd = DigestUtil.md5Hex(userPwd);
         if(!userPwd.equals(user.getUpwd())){
             resultInfo.setCode(0);
             resultInfo.setMsg("password incorrect!");
-            return  resultInfo;
+            return resultInfo;
         }
 
         resultInfo.setCode(1);

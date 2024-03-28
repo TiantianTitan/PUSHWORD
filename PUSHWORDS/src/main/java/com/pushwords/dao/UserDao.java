@@ -11,7 +11,7 @@ import java.sql.SQLException;
 public class UserDao {
 
 
-    public User queryUserByName(String userName) throws SQLException {
+    public User queryUserByName(String userName) {
         User user = null;
         Connection connection = null;
         PreparedStatement preparedStatement = null;

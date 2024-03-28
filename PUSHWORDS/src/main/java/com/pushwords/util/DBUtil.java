@@ -8,49 +8,56 @@ import java.util.Properties;
 public class DBUtil {
 
 
-    private  static Properties properties = new Properties();
+    private  static final Properties properties = new Properties();
     static {
         // load properties
-        InputStream in = DBUtil.class.getClassLoader().getResourceAsStream("db.properties");
         try {
-            properties.load(in);
-            Class.forName(properties.getProperty("jdbcName"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+          InputStream in = DBUtil.class.getClassLoader().getResourceAsStream("db.properties");
+
+          properties.load(in);
+                Class.forName(properties.getProperty("jdbcName"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
     }
 
     public static Connection getConnection() {
         Connection connection = null;
 
         // get infos from database
+        try {
             String dbUrl = properties.getProperty("dbUrl");
             String dbName = properties.getProperty("dbName");
             String dbPwd = properties.getProperty("dbPwd");
-
-        try {
             connection = DriverManager.getConnection(dbUrl,dbName,dbPwd);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         return  connection;
     }
 
     public static  void close(ResultSet resultSet,
                               PreparedStatement preparedStatement,
-                              Connection connection) throws SQLException {
+                              Connection connection)  {
 
-        if(resultSet != null){
-            resultSet.close();
+
+    try {
+            if(resultSet != null) {
+                resultSet.close();
+            }
+            if(preparedStatement != null){
+                preparedStatement.close();
+            }
+
+            if(connection != null){
+                connection.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        if(resultSet != null){
-            preparedStatement.close();
-        }
 
-        if(resultSet != null){
-            connection.close();
-        }
+
 
     }
 
