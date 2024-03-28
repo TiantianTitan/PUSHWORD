@@ -55,7 +55,7 @@
             <span id="msg" style="color: red;font-size: 12px" ></span>
             <br/>
             <br/>
-            <input type="submit" value="Login" onclick="checkLogin()">
+            <input type="button" value="login" onclick="checkLogin()">
         </form>
     </div>
 </body>
