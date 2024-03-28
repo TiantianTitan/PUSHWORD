@@ -7,11 +7,23 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDao {
 
-
     public User queryUserByName(String userName) {
+
+        String sql = "select * from tb_user where uname = ?";
+        List<Object> params = new ArrayList<>();
+        params.add(userName);
+
+        User user =(User) BaseDao.queryRow(sql,params,User.class);
+
+        return  user;
+    }
+
+    public User queryUserByName02(String userName) {
         User user = null;
         Connection connection = null;
         PreparedStatement preparedStatement = null;
