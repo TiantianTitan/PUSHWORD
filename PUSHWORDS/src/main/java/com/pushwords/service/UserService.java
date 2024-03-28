@@ -15,6 +15,8 @@ public class UserService {
     public ResultInfo<User> userLogin(String userName, String userPwd)  {
         ResultInfo<User> resultInfo = new  ResultInfo<>();
 
+        System.out.println(userName);
+        System.out.println(userPwd);
         User u = new User();
         u.setUname(userName);
         u.setUpwd(userPwd);
@@ -23,6 +25,7 @@ public class UserService {
         // Judge the userName or userPwd
         if(StrUtil.isBlank(userName) || StrUtil.isBlank(userPwd)){
             resultInfo.setCode(0);
+
             resultInfo.setMsg("Username or password should not be empty");
             return resultInfo;
         }
@@ -31,16 +34,20 @@ public class UserService {
 
 
         if(user == null){
+
             resultInfo.setCode(0);
             resultInfo.setMsg("userName not found!");
             return resultInfo;
         }
 
+        //userPwd = DigestUtil.md5Hex(userPwd);
         if(!userPwd.equals(user.getUpwd())){
+
             resultInfo.setCode(0);
             resultInfo.setMsg("password incorrect!");
             return resultInfo;
         }
+
 
         resultInfo.setCode(1);
         resultInfo.setResult(user);

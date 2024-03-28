@@ -46,9 +46,7 @@ public class UserServlet extends HttpServlet {
     private void userLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String userName = request.getParameter("userName");
-        System.out.println(userName);
         String userPwd = request.getParameter("userPwd");
-        System.out.println(userPwd);
 
         ResultInfo<User> resultInfo = userService.userLogin(userName,userPwd);
 
