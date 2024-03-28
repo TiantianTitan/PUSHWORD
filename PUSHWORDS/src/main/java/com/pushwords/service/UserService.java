@@ -15,8 +15,7 @@ public class UserService {
     public ResultInfo<User> userLogin(String userName, String userPwd)  {
         ResultInfo<User> resultInfo = new  ResultInfo<>();
 
-        System.out.println(userName);
-        System.out.println(userPwd);
+
         User u = new User();
         u.setUname(userName);
         u.setUpwd(userPwd);

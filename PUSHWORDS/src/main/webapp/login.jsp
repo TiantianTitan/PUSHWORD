@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -53,11 +53,11 @@
             <input type= "hidden" name="actionName" value="login"/>
 
             <label for="username">Username:</label>
-            <input type="text" id="userName" name="userName" autocomplete="current-username">
+            <input type="text" id="userName" name="userName" value="${resultInfo.result.uname}" autocomplete="current-username">
             <label for="password">Password:</label>
-            <input type="password" id="userPwd" name="userPwd" autocomplete="current-password">
+            <input type="password" id="userPwd" name="userPwd" value="${resultInfo.result.upwd}" autocomplete="current-password">
             <input name = "rem" type="checkbox" value="1" class="inputcheckbox"/> <label>remember me</label>
-            <span id="msg" style="color: red;font-size: 12px" ></span>
+            <span id="msg" style="color: red;font-size: 12px" >${resultInfo.msg}</span>
             <br/>
             <br/>
             <input type="button" value="Login" onclick="checkLogin()">
