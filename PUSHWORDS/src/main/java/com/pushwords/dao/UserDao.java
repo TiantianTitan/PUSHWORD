@@ -58,4 +58,11 @@ public class UserDao {
         return  user;
     }
 
+    public User queryUserByNickAndUserId(String nick, Integer userId) {
+        String sql = "select * from tb_user where nick = ? and userId != ?";
+        List<Object> params = new ArrayList<>();
+        params.add(nick);
+        params.add(userId);
+        return (User) BaseDao.queryRow(sql,params,User.class);
+    }
 }

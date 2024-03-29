@@ -54,4 +54,15 @@ public class UserService {
 
     }
 
+    public Integer checkNick(String nick, Integer userId) {
+        if(StrUtil.isBlank(nick)){
+            return 0;
+        }
+        User user = userDao.queryUserByNickAndUserId(nick,userId);
+
+        if(user != null){
+            return 0;
+        }
+        return 1;
+   }
 }

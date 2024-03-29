@@ -30,8 +30,11 @@ public class UserServlet extends HttpServlet {
         }else if("userHead".equals(actionName)){
             // Load the image of head
             userHead(request,response);
+        }else if("checkNick".equals(actionName)){
+            checkNick(request,response);
         }
     }
+
 
 
 
@@ -80,7 +83,6 @@ public class UserServlet extends HttpServlet {
         String realPath = request.getServletContext().getRealPath("/WEB-INF/upload/");
         File file = new File(realPath + "/" +head);
         String pic = head.substring(head.lastIndexOf(".")+1);
-        System.out.println(pic);
 
         if("PNG".equalsIgnoreCase(pic)){
             response.setContentType("image/png");
@@ -91,6 +93,15 @@ public class UserServlet extends HttpServlet {
         }
 
         FileUtils.copyFile(file,response.getOutputStream());
+
+    }
+
+    private void checkNick(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String nick = request.getParameter("nick");
+        User user = (User) request.getSession().getAttribute("user");
+        Integer code = userService.checkNick(nick,user.getUserId());
+        response.getWriter().write(code+"");
+        response.getWriter().close();
 
     }
 
