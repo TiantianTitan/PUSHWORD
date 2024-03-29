@@ -17,6 +17,15 @@ main {
     flex: 1; /* 允许main元素填充所有可用空间 */
 }
 
+.current a {
+    background-color: #5cb85c; /* or any color that stands out */
+    color: white; /* white text color for better contrast */
+}
+
+/* More specific styles can be added for hover effects if desired */
+.current a:hover {
+    background-color: #4cae4c; /* a darker shade when hovered */
+}
 
 nav ul {
     list-style-type: none;

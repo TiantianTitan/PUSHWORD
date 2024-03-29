@@ -4,6 +4,7 @@ import com.pushwords.po.User;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -50,6 +51,24 @@ public class LoginAccessFilter implements Filter {
             filterChain.doFilter(request,response);
             return;
         }
+
+        // 5. remember me
+        Cookie[] cookies = request.getCookies();
+        if(cookies != null){
+            for(Cookie cookie: cookies){
+                if("user".equals(cookie.getName())){
+                    String[] strings = cookie.getValue().split("-");
+                    String userName = strings[0];
+                    String userPwd = strings[1];
+                    String url = "user?actionName=login&userName="+userName+"&userPwd="+userPwd;
+                    request.getRequestDispatcher(url).forward(request,response);
+                    return;
+                }
+            }
+        }
+
+
+
 
         // redirect to login
         response.sendRedirect("login.jsp");

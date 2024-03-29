@@ -7,7 +7,7 @@
     <title>Login Page</title>
     <title>Login Page</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="statics/js/config.js?version=1.1" type="text/javascript"></script>
+    <script src="statics/js/config.js?version=1.0" type="text/javascript"></script>
 
     <style>
         body {

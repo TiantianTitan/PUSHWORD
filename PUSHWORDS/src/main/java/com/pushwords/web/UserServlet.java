@@ -22,27 +22,10 @@ public class UserServlet extends HttpServlet {
         String actionName = request.getParameter("actionName");
         if("login".equals(actionName)) {
             userLogin(request, response);
+        }else if ("logout".equals(actionName)){
+            userLogOut(request,response);
         }
     }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String actionName = request.getParameter("actionName");
-        if ("login".equals(actionName)) {
-            try {
-                userLogin(request, response);
-            } catch (Exception e) {
-                e.printStackTrace();
-                if (!response.isCommitted()) {
-                    response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-                }
-            }
-        } else {
-            // Handle other POST requests or send an error if it's not supported.
-            response.sendError(HttpServletResponse.SC_NOT_IMPLEMENTED, "POST not supported for this action");
-        }
-    }
-
     private void userLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String userName = request.getParameter("userName");
@@ -74,4 +57,31 @@ public class UserServlet extends HttpServlet {
 
 
     }
+    private void userLogOut(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.getSession().invalidate();
+        Cookie cookie = new Cookie("user",null);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+        response.sendRedirect("login.jsp");
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String actionName = request.getParameter("actionName");
+        if ("login".equals(actionName)) {
+            try {
+                userLogin(request, response);
+            } catch (Exception e) {
+                e.printStackTrace();
+                if (!response.isCommitted()) {
+                    response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                }
+            }
+        } else {
+            // Handle other POST requests or send an error if it's not supported.
+            response.sendError(HttpServletResponse.SC_NOT_IMPLEMENTED, "POST not supported for this action");
+        }
+    }
+
+
 }
