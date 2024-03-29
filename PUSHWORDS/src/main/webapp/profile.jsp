@@ -79,8 +79,42 @@
             }
         });
     });
-</script>
 
+    function updateUser(event){
+        // 防止表单默认提交
+        event.preventDefault();
+
+        var nickName = $("#nickName").val();
+        if(nickName.trim() === ""){
+            $("#msg").html("Nickname can't be empty!");
+            return false;
+        } else {
+            $.ajax({
+                type: "GET",
+                url: "user",
+                data: {
+                    actionName: "checkNick",
+                    nick: nickName
+                },
+                success: function (data) {
+                    if(data.trim() === '1'){
+                        $("#msg").html("");
+                        // 如果没有问题，则提交表单
+                        $("#formModify").submit();
+                    } else {
+                        $("#msg").html("This nickname exists!");
+                    }
+                }
+            });
+        }
+    }
+
+    // 绑定点击事件而不是使用 onclick 属性
+    $(document).ready(function() {
+        $('#btn').on('click', updateUser);
+    });
+
+</script>
 
 
 </head>
@@ -99,7 +133,8 @@
     </header>
     <main>
         <div class="container">
-                <h2>Profil</h2>
+            <h2>Profil</h2>
+            <form id="formModify" method="post" action="user" enctype="multipart/form-data" >
 
                  <div class="form-group">
                  <img style="width:260px;height:180px" src="user?actionName=userHead&imageName=${user.head}">
@@ -117,10 +152,12 @@
                     <input type="file" id="img" name="img"></textarea>
                 </div>
                 <div class="form-group">
-                    <button type="submit" id="btn"> Modify</button>
+                    <button type="submit" id="btn" onclick="return updateUser();"> Modify</button>
                     <span style="color:red;font-size:12px;" id="msg"></span>
                 </div>
-            </div>
+            </form>
+        </div>
+
     </main>
     <footer>
         <p>&copy; 2024 Site de Mémorisation de Mots. Tous droits réservés.</p>
