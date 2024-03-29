@@ -4,23 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Site de Mémorisation de Mots</title>
-    <link rel="stylesheet" href="../statics/css/index.css"">
+    <link rel="stylesheet" href="statics/css/index.css"">
 </head>
 <body>
     <header>
         <nav>
             <ul>
-                <li><a href="../index.jsp">Accueil</a></li>
-                <li class="current"><a href="publish.jsp">Publier</a></li>
+                <li><a href="index.jsp">Accueil</a></li>
+                <li><a href="publish.jsp">Publier</a></li>
                 <li><a href="category-management.jsp">Gestion des Catégories</a></li>
                 <li><a href="profile.jsp">Profil Personnel</a></li>
-                <li><a href="reports.jsp">Rapports de Données</a></li>
-                <li><a href="../user?actionName=logout">Exit</a> </li>
+                <li class="current"><a href="reports.jsp">Rapports de Données</a></li>
+                <li><a href="user?actionName=logout">Exit</a> </li>
             </ul>
         </nav>
     </header>
     <main>
-        <h1>Publish Page</h1>
+        <h1>Statics Page</h1>
 
         <!-- La zone de contenu principal -->
     </main>

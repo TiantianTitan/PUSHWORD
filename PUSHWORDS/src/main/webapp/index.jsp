@@ -11,10 +11,10 @@
         <nav>
             <ul>
                 <li class="current"><a href="index.jsp">Accueil</a></li>
-                <li><a href="./push_word/publish.jsp">Publier</a></li>
-                <li><a href="./push_word/category-management.jsp">Gestion des Catégories</a></li>
-                <li><a href="./push_word/profile.jsp">Profil Personnel</a></li>
-                <li><a href="./push_word/reports.jsp">Rapports de Données</a></li>
+                <li><a href="publish.jsp">Publier</a></li>
+                <li><a href="category-management.jsp">Gestion des Catégories</a></li>
+                <li><a href="profile.jsp">Profil Personnel</a></li>
+                <li><a href="reports.jsp">Rapports de Données</a></li>
                 <li><a href="user?actionName=logout">Exit</a> </li>
             </ul>
         </nav>

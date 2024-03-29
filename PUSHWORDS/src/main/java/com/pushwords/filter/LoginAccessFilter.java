@@ -60,7 +60,7 @@ public class LoginAccessFilter implements Filter {
                     String[] strings = cookie.getValue().split("-");
                     String userName = strings[0];
                     String userPwd = strings[1];
-                    String url = "user?actionName=login&userName="+userName+"&userPwd="+userPwd;
+                    String url = "user?actionName=login&rem=1&userName="+userName+"&userPwd="+userPwd;
                     request.getRequestDispatcher(url).forward(request,response);
                     return;
                 }

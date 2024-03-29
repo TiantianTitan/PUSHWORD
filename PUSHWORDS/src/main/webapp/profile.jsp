@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Site de Mémorisation de Mots</title>
-    <link rel="stylesheet" href="../statics/css/index.css"">
+    <link rel="stylesheet" href="statics/css/index.css"">
 
     <style>
             main {
@@ -53,12 +53,12 @@
     <header>
         <nav>
             <ul>
-                <li><a href="../index.jsp">Accueil</a></li>
+                <li><a href="index.jsp">Accueil</a></li>
                 <li><a href="publish.jsp">Publier</a></li>
                 <li><a href="category-management.jsp">Gestion des Catégories</a></li>
                 <li class="current"><a href="profile.jsp">Profil Personnel</a></li>
                 <li><a href="reports.jsp">Rapports de Données</a></li>
-                <li><a href="../user?actionName=logout">Exit</a> </li>
+                <li><a href="user?actionName=logout">Exit</a> </li>
             </ul>
         </nav>
     </header>
@@ -66,6 +66,9 @@
         <div class="container">
                 <h2>Profil</h2>
                 <form action="your_processing_script.jsp" method="post">
+                     <div class="form-group">
+                     <img style="width:260px;height:180px" src="user?actionName=userHead&imageName=${user.head}">
+                     </div>
                     <div class="form-group">
                         <label for="userNick">NickName:</label>
                         <input type="text" id="userNick" name="userNick" value="${user.nick}">
@@ -76,7 +79,7 @@
                     </div>
                     <div class="form-group">
                         <label for="img">Head:</label>
-                        <input type="file" id="img" name="img"> ${user.head}</textarea>
+                        <input type="file" id="img" name="img"></textarea>
                     </div>
                     <div class="form-group">
                         <input type="submit" value="Modify">

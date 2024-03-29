@@ -15,7 +15,7 @@ public class TestUser {
     public void testQueryUserByName() throws SQLException {
         UserDao userDao = new UserDao();
         User user = userDao.queryUserByName("admin");
-        System.out.println(user.getUpwd());
+        System.out.println(user.getHead());
     }
 
     @Test
