@@ -7,6 +7,7 @@ import com.pushwords.vo.ResultInfo;
 import org.apache.commons.io.FileUtils;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +18,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 @WebServlet("/user")
+@MultipartConfig
 public class UserServlet extends HttpServlet {
 
     private final UserService userService = new UserService();
@@ -32,10 +34,11 @@ public class UserServlet extends HttpServlet {
             userHead(request,response);
         }else if("checkNick".equals(actionName)){
             checkNick(request,response);
+        }else if("updateUser".equals(actionName)){
+            // Modify the information of user
+            updateUser(request,response);
         }
     }
-
-
 
 
     private void userLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -102,7 +105,13 @@ public class UserServlet extends HttpServlet {
         Integer code = userService.checkNick(nick,user.getUserId());
         response.getWriter().write(code+"");
         response.getWriter().close();
+    }
 
+    private void updateUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ResultInfo<User> resultInfo = userService.updateUser(request);
+
+        request.setAttribute("resultInfo",resultInfo);
+        request.getRequestDispatcher("profile.jsp").forward(request,response);
     }
 
 

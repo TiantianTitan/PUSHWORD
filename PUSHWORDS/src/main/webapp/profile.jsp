@@ -135,20 +135,21 @@
         <div class="container">
             <h2>Profil</h2>
             <form id="formModify" method="post" action="user" enctype="multipart/form-data" >
+                <input type="hidden" name="actionName" value="updateUser">
 
-                 <div class="form-group">
-                 <img style="width:260px;height:180px" src="user?actionName=userHead&imageName=${user.head}">
-                 </div>
                 <div class="form-group">
-                    <label for="nickName">NickName:</label>
+                    <img style="width:260px;height:180px" src="user?actionName=userHead&imageName=${user.head}">
+                </div>
+                <label for="nickName">NickName:</label>
+                <div class="form-group">
                     <input type="text" id="nickName" name="nick" placeholder="nickName" value="${user.nick}">
                 </div>
+                <label for="mood">Mood:</label>
                 <div class="form-group">
-                    <label for="mood">Mood:</label>
                     <textarea id="mood" name="mood"> ${user.mood}</textarea>
                 </div>
+                <label for="img">Head:</label>
                 <div class="form-group">
-                    <label for="img">Head:</label>
                     <input type="file" id="img" name="img"></textarea>
                 </div>
                 <div class="form-group">

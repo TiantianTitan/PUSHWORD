@@ -6,6 +6,8 @@ import com.pushwords.dao.UserDao;
 import com.pushwords.po.User;
 import com.pushwords.vo.ResultInfo;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Part;
 import java.sql.SQLException;
 
 public class UserService {
@@ -65,4 +67,49 @@ public class UserService {
         }
         return 1;
    }
+
+    public ResultInfo<User> updateUser(HttpServletRequest request) {
+        ResultInfo<User> resultInfo = new ResultInfo<>();
+
+        String nick = request.getParameter("nick");
+        String mood = request.getParameter("mood");
+
+        if(StrUtil.isBlank(nick)){
+            resultInfo.setCode(0);
+            resultInfo.setMsg("Nick can't be empty!");
+            return resultInfo;
+        }
+
+        User user = (User) request.getSession().getAttribute("user");
+        user.setNick(nick);
+        user.setMood(mood);
+
+        try {
+            Part part = request.getPart("img");
+            String header = part.getHeader("Content-Disposition");
+            String str = header.substring(header.lastIndexOf("=")+2);
+            String  fileName = str.substring(0,str.length()-1);
+            if(!StrUtil.isBlank(fileName)){
+                user.setHead(fileName);
+                String filePath = request.getServletContext().getRealPath("/WEB-INF/upload/");
+                part.write(filePath+"/"+fileName);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        int row = userDao.updateUser(user);
+
+        if( row > 0){
+            resultInfo.setCode(1);
+            // update session
+            request.getSession().setAttribute("user",user);
+        }else {
+            resultInfo.setCode(0);
+            resultInfo.setMsg("Update Fail");
+        }
+
+        return  resultInfo;
+    }
+
 }

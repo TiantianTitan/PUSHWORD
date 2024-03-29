@@ -65,4 +65,16 @@ public class UserDao {
         params.add(userId);
         return (User) BaseDao.queryRow(sql,params,User.class);
     }
+
+    public int updateUser(User user) {
+        String sql = "update tb_user set nick = ?, mood = ?, head = ? where userId = ?";
+
+        List<Object> params = new ArrayList<>();
+        params.add(user.getNick());
+        params.add(user.getMood());
+        params.add(user.getHead());
+        params.add(user.getUserId());
+
+        return BaseDao.executeUpdate(sql,params);
+    }
 }
