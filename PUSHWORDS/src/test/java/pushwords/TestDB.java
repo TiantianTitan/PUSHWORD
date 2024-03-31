@@ -11,7 +11,7 @@ public class TestDB {
     private static Logger logger = LoggerFactory.getLogger(TestDB.class);
 
 
-    // mysql -u root -p --socket=/var/run/mysqld/mysqld.sock    La commande pour démarrer le sql
+    // mysql -u root -p --socket=/var/run/mysqld/mysqld.sock    La commaande pour démarrer le sql
     @Test
     public void testDB() {
         System.out.println(DBUtil.getConnection());
