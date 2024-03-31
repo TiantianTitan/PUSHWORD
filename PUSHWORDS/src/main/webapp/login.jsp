@@ -54,7 +54,7 @@
 
             <label for="username">Username:</label>
             <input type="text" id="userName" name="userName" value="${resultInfo.result.uname}" autocomplete="current-username">
-            <label for="password">Password:</label>
+            <label for="userPwd">Password:</label>
             <input type="password" id="userPwd" name="userPwd" value="${resultInfo.result.upwd}" autocomplete="current-password">
             <input name = "rem" type="checkbox" value="1" class="inputcheckbox"/> <label>remember me</label>
             <span id="msg" style="color: red;font-size: 12px" >${resultInfo.msg}</span>

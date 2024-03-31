@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Site de Mémorisation de Mots</title>
-    <link rel="stylesheet" href="./statics/css/index.css"">
+    <link rel="stylesheet" href="./statics/css/index.css">
 </head>
 <body>
     <header>
