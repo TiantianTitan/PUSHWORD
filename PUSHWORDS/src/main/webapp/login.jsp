@@ -68,7 +68,7 @@
         }
         .toggle-btn {
             position: fixed;
-            top: 10px;
+            top: 0;
             left: 0;
             z-index: 2;
             background-color: #111;
@@ -112,7 +112,7 @@
         <a href="">More</a>
     </div>
     <div class="login-container">
-        <img src="./statics/images/logo.png" alt="logoPushWords">
+        <img style="text-align: center; width: 100%" src="./statics/images/logo.png" alt="logoPushWords">
         <form action="user" method="post" id="loginForm">
             <input type= "hidden" name="actionName" value="login"/>
             <label for="userName">Username:</label>
@@ -166,4 +166,5 @@
         }
 </script>
 </body>
+
 </html>
