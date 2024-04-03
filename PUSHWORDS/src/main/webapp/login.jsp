@@ -69,7 +69,7 @@
         .toggle-btn {
             position: fixed;
             top: 10px;
-            left: 0px;
+            left: 0;
             z-index: 2;
             background-color: #111;
             color: white;
@@ -105,14 +105,14 @@
 <body>
     <button class="toggle-btn" onclick="toggleSidebar()">Menu</button>
     <div id="sidebar" class="sidebar">
-        <a href="#home">Home</a>
-        <a href="#services">Services</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <a href="#more">More</a>
+        <a href="">Home</a>
+        <a href="">Services</a>
+        <a href="">About</a>
+        <a href="">Contact</a>
+        <a href="">More</a>
     </div>
     <div class="login-container">
-        <img src="./images/logo.png" >
+        <img src="./statics/images/logo.png" alt="logoPushWords">
         <form action="user" method="post" id="loginForm">
             <input type= "hidden" name="actionName" value="login"/>
             <label for="userName">Username:</label>
@@ -125,7 +125,10 @@
             </div>
 
             <div>
-                <input name = "rem" type="checkbox" value="1" class="inputcheckbox"/> <label>remember me</label>
+                <label>
+                    <input name = "rem" type="checkbox" value="1" class="input checkbox"/>
+                </label>
+                <label>remember me</label>
             </div>
             <div>
             <span id="msg" style="color: red;font-size: 12px" >${resultInfo.msg}</span>
@@ -137,8 +140,8 @@
     </div>
     <script>
         function toggleSidebar() {
-            var sidebar = document.getElementById("sidebar");
-            var btn = document.querySelector(".toggle-btn");
+            let sidebar = document.getElementById("sidebar");
+            let btn = document.querySelector(".toggle-btn");
             if (sidebar.style.width === "250px") {
                 sidebar.style.width = "0";
                 btn.style.left = "0px";
@@ -149,8 +152,8 @@
         }
 
         function togglePassword() {
-            var pwd = document.getElementById("userPwd");
-            var toggleBtn = document.getElementById("togglePasswordBtn");
+            let pwd = document.getElementById("userPwd");
+            let toggleBtn = document.getElementById("togglePasswordBtn");
             if (pwd.type === "password") {
                 pwd.type = "text";
                 toggleBtn.classList.remove("fa-eye");
