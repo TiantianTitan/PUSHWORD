@@ -109,7 +109,7 @@
         }
     }
 
-    // 绑定点击事件而不是使用 onclick 属性
+
     $(document).ready(function() {
         $('#btn').on('click', updateUser);
     });
