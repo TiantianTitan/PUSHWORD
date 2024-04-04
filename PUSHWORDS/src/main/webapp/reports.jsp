@@ -13,7 +13,7 @@
                 <li><a href="index.jsp">Accueil</a></li>
                 <li><a href="publish.jsp">Publier</a></li>
                 <li><a href="category-management.jsp">Gestion des Catégories</a></li>
-                <li><a href="user/profile.jsp">Profil Personnel</a></li>
+                <li><a href="profile.jsp">Profil Personnel</a></li>
                 <li class="current"><a href="reports.jsp">Rapports de Données</a></li>
                 <li><a href="user?actionName=logout">Exit</a> </li>
             </ul>
