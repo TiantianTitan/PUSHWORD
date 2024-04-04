@@ -102,15 +102,22 @@
         /* 你原有的CSS... */
 
         .slider-container {
-            position: relative;
-            max-width: 650px; /* 根据需要调整宽度 */
-            margin: auto;
             overflow: hidden;
+            max-width: 600px; /* 确保这个宽度适合你的设计 */
+            margin: 20px auto;
+            position: relative;
         }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease; /* 平滑过渡效果 */
+        }
+
 
         .slider img {
             width: 100%;
-            display: none; /* 默认隐藏所有图片 */
+            flex-shrink: 0;
+            display: inline-block;
         }
 
         .btn {
@@ -220,36 +227,40 @@
 
         let sliderIndex = 0;
         let slides = document.querySelectorAll('.slider img');
-        let timer = null;
+        let slider = document.querySelector('.slider');
+        let containerWidth = document.querySelector('.slider-container').offsetWidth;
+        let timer;
 
-        function showSlide(index) {
-            slides.forEach((slide, i) => {
-                slide.style.display = i === index ? 'block' : 'none';
-            });
-            resetTimer();
+        function updateSliderPosition() {
+            slider.style.transform = 'translateX(' + (-sliderIndex * containerWidth) + 'px)';
         }
 
         function nextSlide() {
             sliderIndex = (sliderIndex + 1) % slides.length;
-            showSlide(sliderIndex);
+            updateSliderPosition();
+            resetTimer(); // Reset the timer whenever manually navigate
         }
 
         function prevSlide() {
             sliderIndex = (sliderIndex - 1 + slides.length) % slides.length;
-            showSlide(sliderIndex);
+            updateSliderPosition();
+            resetTimer(); // Reset the timer whenever manually navigate
         }
 
         function resetTimer() {
             clearInterval(timer);
-            timer = setInterval(nextSlide, 5000); // 5秒切换一次
+            timer = setInterval(function() {
+                sliderIndex = (sliderIndex + 1) % slides.length;
+                updateSliderPosition();
+            }, 5000); // Change slide every 5 seconds
         }
 
         document.querySelector('.next').addEventListener('click', nextSlide);
         document.querySelector('.prev').addEventListener('click', prevSlide);
 
-        // 初始化
+        // Initialize the slider position and start the automatic slideshow
+        updateSliderPosition();
         resetTimer();
-        showSlide(sliderIndex);
 </script>
 </body>
 
