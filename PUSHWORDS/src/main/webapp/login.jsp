@@ -99,6 +99,39 @@
             cursor: pointer;
         }
 
+        /* 你原有的CSS... */
+
+        .slider-container {
+            position: relative;
+            max-width: 650px; /* 根据需要调整宽度 */
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .slider img {
+            width: 100%;
+            display: none; /* 默认隐藏所有图片 */
+        }
+
+        .btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            background-color: rgba(255, 255, 255, 0.5); /* 透明按钮 */
+            border: none;
+            cursor: pointer;
+        }
+
+        .prev {
+            left: 0;
+        }
+
+        .next {
+            right: 0;
+        }
+
+
 
     </style>
 </head>
@@ -111,6 +144,26 @@
         <a href="">Contact</a>
         <a href="">More</a>
     </div>
+
+
+    <!-- 你原有的代码... -->
+
+    <div class="slider-container">
+        <div class="slider">
+            <img src="./statics/images/logo.png" alt="Image 1">
+            <img src="./statics/images/words.jpg" alt="Image 2">
+
+            <!-- 添加更多图片 -->
+        </div>
+        <button class="btn prev">&#10094;</button>
+        <button class="btn next">&#10095;</button>
+    </div>
+
+    <!-- 你原有的JavaScript位置之前... -->
+
+
+
+
     <div class="login-container">
         <img style="text-align: center; width: 100%" src="./statics/images/logo.png" alt="logoPushWords">
         <form action="user" method="post" id="loginForm">
@@ -164,6 +217,39 @@
                 toggleBtn.classList.add("fa-eye");
             }
         }
+
+        let sliderIndex = 0;
+        let slides = document.querySelectorAll('.slider img');
+        let timer = null;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.display = i === index ? 'block' : 'none';
+            });
+            resetTimer();
+        }
+
+        function nextSlide() {
+            sliderIndex = (sliderIndex + 1) % slides.length;
+            showSlide(sliderIndex);
+        }
+
+        function prevSlide() {
+            sliderIndex = (sliderIndex - 1 + slides.length) % slides.length;
+            showSlide(sliderIndex);
+        }
+
+        function resetTimer() {
+            clearInterval(timer);
+            timer = setInterval(nextSlide, 5000); // 5秒切换一次
+        }
+
+        document.querySelector('.next').addEventListener('click', nextSlide);
+        document.querySelector('.prev').addEventListener('click', prevSlide);
+
+        // 初始化
+        resetTimer();
+        showSlide(sliderIndex);
 </script>
 </body>
 
