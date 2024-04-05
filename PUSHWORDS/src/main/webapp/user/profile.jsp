@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Site de Mémorisation de Mots</title>
-    <link rel="stylesheet" href="statics/css/index.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/statics/css/index.css">
+
 
     <style>
         main {
@@ -61,7 +62,7 @@
                 } else if (nickName !== previousNick) {
                     $.ajax({
                         type: "GET",
-                        url: "user",
+                        url: "${pageContext.request.contextPath}/user",
                         data: {
                             actionName: "checkNick",
                             nick: nickName
@@ -91,7 +92,7 @@
             } else {
                 $.ajax({
                     type: "GET",
-                    url: "user",
+                    url: "${pageContext.request.contextPath}/user",
                     data: {
                         actionName: "checkNick",
                         nick: nickName
@@ -99,7 +100,6 @@
                     success: function (data) {
                         if(data.trim() === '1'){
                             $("#msg").html("");
-                            // 如果没有问题，则提交表单
                             $("#formModify").submit();
                         } else {
                             $("#msg").html("This nickname exists!");
@@ -122,23 +122,23 @@
 <header>
     <nav>
         <ul>
-            <li><a href="index.jsp">Accueil</a></li>
-            <li><a href="publish.jsp">Publier</a></li>
-            <li><a href="category-management.jsp">Gestion des Catégories</a></li>
+            <li><a href="${pageContext.request.contextPath}/index.jsp">Accueil</a></li>
+            <li><a href="${pageContext.request.contextPath}/publish.jsp">Publier</a></li>
+            <li><a href="${pageContext.request.contextPath}/category-management.jsp">Gestion des Catégories</a></li>
             <li class="current"><a href="profile.jsp">Profil Personnel</a></li>
-            <li><a href="reports.jsp">Rapports de Données</a></li>
-            <li><a href="user?actionName=logout">Exit</a> </li>
+            <li><a href="${pageContext.request.contextPath}/reports.jsp">Rapports de Données</a></li>
+            <li><a href="${pageContext.request.contextPath}/user?actionName=logout">Exit</a> </li>
         </ul>
     </nav>
 </header>
 <main>
     <div class="container">
         <h2>Profil</h2>
-        <form id="formModify" method="post" action="user" enctype="multipart/form-data" >
+        <form id="formModify" method="post" action="../user?actionName=updateUser" enctype="multipart/form-data">
             <input type="hidden" name="actionName" value="updateUser">
 
             <div class="form-group">
-                <img style="width:260px;height:180px" src="user?actionName=userHead&imageName=${user.head}">
+                <img style="width:260px;height:180px" src="${pageContext.request.contextPath}/user?actionName=userHead&imageName=${user.head}">
             </div>
             <label for="nickName">NickName:</label>
             <div class="form-group">

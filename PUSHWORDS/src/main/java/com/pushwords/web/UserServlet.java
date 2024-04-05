@@ -111,7 +111,7 @@ public class UserServlet extends HttpServlet {
         ResultInfo<User> resultInfo = userService.updateUser(request);
 
         request.setAttribute("resultInfo",resultInfo);
-        request.getRequestDispatcher("profile.jsp").forward(request,response);
+        request.getRequestDispatcher("/user/profile.jsp").forward(request,response);
     }
 
 
