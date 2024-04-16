@@ -1,32 +1,17 @@
 package com.pushwords.po;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class WordGroup {
 
     private Integer groupId;
     private String groupName;
-    private Integer userId;
+    private String groupDescription;
+    private Integer groupUserId;
 
-    public Integer getGroupId() {
-        return groupId;
-    }
 
-    public void setGroupId(Integer groupId) {
-        this.groupId = groupId;
-    }
 
-    public String getGroupName() {
-        return groupName;
-    }
-
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
 }

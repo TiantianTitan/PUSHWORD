@@ -2,7 +2,9 @@ package pushwords;
 
 import com.pushwords.dao.BaseDao;
 import com.pushwords.dao.UserDao;
+import com.pushwords.dao.WordGroupDao;
 import com.pushwords.po.User;
+import com.pushwords.po.WordGroup;
 import org.junit.Test;
 
 import java.sql.SQLException;
@@ -16,6 +18,18 @@ public class TestUser {
         UserDao userDao = new UserDao();
         User user = userDao.queryUserByName("admin");
         System.out.println(user.getHead());
+    }
+
+    @Test
+    public void testQueryGroupByName() throws SQLException {
+        WordGroupDao wordGroupDao = new WordGroupDao();
+        List<WordGroup> wordGroups = wordGroupDao. findGroupListByUserId(1);
+        for(WordGroup wordGroup: wordGroups){
+            System.out.println(wordGroup.getGroupId());
+            System.out.println(wordGroup.getGroupName());
+            System.out.println(wordGroup.getGroupDescription());
+            System.out.println(wordGroup.getGroupUserId());
+        }
     }
 
     @Test

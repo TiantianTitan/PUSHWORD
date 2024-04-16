@@ -99,6 +99,8 @@ footer {
     background-color: #4cae4c;
 }
 
+
+
 /* Design réactif pour les appareils mobiles */
 @media (max-width: 600px) {
     nav ul {

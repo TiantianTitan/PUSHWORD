@@ -15,7 +15,7 @@ import java.util.List;
 
 @WebServlet("/group")
 public class WordGroupServlet extends HttpServlet {
-    private WordGroupService groupService = new WordGroupService();
+    private final WordGroupService groupService = new WordGroupService();
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,8 +30,8 @@ public class WordGroupServlet extends HttpServlet {
 
         List<WordGroup> groupList = groupService.findGroupList(user.getUserId());
         request.setAttribute("groupList",groupList);
-//        request.setAttribute("changePage","group/list.jsp");
-        request.getRequestDispatcher("index.jsp").forward(request,response);
+//       request.setAttribute("changePage","group/group.jsp");
+        request.getRequestDispatcher("/group/group.jsp").forward(request,response);
 
     }
 }
