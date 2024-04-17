@@ -3,18 +3,19 @@ html, body {
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: column; /* 设置主轴方向为垂直方向 */
+    flex-direction: row; /* 设置主轴方向为垂直方向 */
 }
 
 body > .wrapper {
     flex: 1; /* 使包装器能够伸缩，占据除 header 和 footer 之外的所有可用空间 */
     display: flex;
-    flex-direction: column; /* 再次设置垂直方向，以确保主内容能够垂直扩展 */
+    flex-direction: row; /* 再次设置垂直方向，以确保主内容能够垂直扩展 */
     justify-content: space-between; /* 分布空间，推动 footer 到底部 */
 }
 
 main {
-    flex: 1; /* 允许main元素填充所有可用空间 */
+    position: relative;
+    overflow: hidden;
 }
 
 .current a {
@@ -57,8 +58,8 @@ header {
 }
 
 footer {
-    background-color: #333;
-    color: #fff;
+    background-color: white;
+    color: white;
     text-align: center;
     padding: 10px 0;
 }

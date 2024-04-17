@@ -144,6 +144,7 @@
 </head>
 <body>
     <button class="toggle-btn" onclick="toggleSidebar()">Menu</button>
+
     <div id="sidebar" class="sidebar">
         <a href="">Home</a>
         <a href="">Services</a>
