@@ -77,11 +77,11 @@
         </nav>
     </header>
     <main>
-        <div>
-            <%--        <c:if test="${empty groupList}">--%>
-            <%--            <h2> data not found </h2>--%>
-            <%--        </c:if>--%>
-            <%--        <c:if test="${!empty groupList}">--%>
+        <div id="myDiv">
+            <c:if test="${empty groupList}">
+                <h2> data not found </h2>
+            </c:if>
+            <c:if test="${!empty groupList}">
             <table class="table table-hover table-striped">
                 <tbody>
                     <tr>
@@ -92,27 +92,30 @@
 
                     </tr>
                         <c:forEach items="${groupList}" var="item">
-                            <tr>
+                            <tr id="tr_${item.groupId}">
                                 <td>${item.groupId}</td>
                                 <td>${item.groupName}</td>
                                 <td>${item.groupDescription}</td>
                                 <td>
                                     <button class="button">modify</button>
-                                    <button class="button delete">delete</button>
+                                    <button class="button delete" onclick="deleteGroup(${item.groupId})">delete</button>
                                 </td>
 
                             </tr>
                         </c:forEach>
                 </tbody>
             </table>
-            <%--        </c:if>--%>
+        </c:if>
         </div>
 
-
-        <!-- La zone de contenu principal -->
+     <!-- La zone de contenu principal -->
     </main>
     <footer>
         <p>&copy; 2024 Site de Mémorisation de Mots. Tous droits réservés.</p>
     </footer>
+
 </body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="${pageContext.request.contextPath}/statics/js/group.js"></script>
+
 </html>

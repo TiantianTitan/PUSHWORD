@@ -1,8 +1,12 @@
 package com.pushwords.web;
 
+
+import cn.hutool.json.JSON;
 import com.pushwords.po.User;
 import com.pushwords.po.WordGroup;
 import com.pushwords.service.WordGroupService;
+import com.pushwords.util.JsonUtil;
+import com.pushwords.vo.ResultInfo;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.*;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
+
+import static cn.hutool.json.JSON.*;
 
 @WebServlet("/group")
 public class WordGroupServlet extends HttpServlet {
@@ -22,7 +29,16 @@ public class WordGroupServlet extends HttpServlet {
         String actionName = request.getParameter("actionName");
         if("list".equals(actionName)){
             groupList(request,response);
+        } else if ("delete".equals(actionName)) {
+            deleteGroup(request,response);
         }
+    }
+
+    private void deleteGroup(HttpServletRequest request, HttpServletResponse response) {
+
+        String groupId = request.getParameter("groupId");
+        ResultInfo<WordGroup> resultInfo = groupService.deleteGroup(groupId);
+        JsonUtil.toJson(response,resultInfo);
     }
 
     private void groupList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

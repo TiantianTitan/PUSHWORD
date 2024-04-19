@@ -23,7 +23,7 @@ public class TestUser {
     @Test
     public void testQueryGroupByName() throws SQLException {
         WordGroupDao wordGroupDao = new WordGroupDao();
-        List<WordGroup> wordGroups = wordGroupDao. findGroupListByUserId(1);
+        List<WordGroup> wordGroups = wordGroupDao.findGroupListByUserId(1);
         for(WordGroup wordGroup: wordGroups){
             System.out.println(wordGroup.getGroupId());
             System.out.println(wordGroup.getGroupName());

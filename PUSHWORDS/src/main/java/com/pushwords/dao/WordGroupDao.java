@@ -17,7 +17,18 @@ public class WordGroupDao {
         return (List<WordGroup>) BaseDao.queryRows(sql,params, WordGroup.class);
     }
 
+    public long findWordCountByGroupId(String groupId) {
+        String sql = "select count(1) from tb_word where groupId = ?";
+        List<Object> params = new ArrayList<>();
+        params.add(groupId);
+        return (long) BaseDao.findSingleValue(sql,params);
 
+    }
 
-
+    public int deleteGroupById(String groupId) {
+        String sql = "delete from tb_group where groupId = ?";
+        List<Object> params = new ArrayList<>();
+        params.add(groupId);
+        return  BaseDao.executeUpdate(sql,params);
+    }
 }
