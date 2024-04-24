@@ -68,6 +68,7 @@
             background-color: gray;
             width: 1447px;
             overflow: hidden;
+            height: 100%;
         }
     </style>
 </head>

@@ -69,6 +69,7 @@
             background-color: gray;
             width: 1447px;
             overflow: hidden;
+            height: 100%;
         }
 
         .form-group {
@@ -169,8 +170,8 @@
 </head>
 <body>
     <div class="icons-container">
-        <a href="user/profile.jsp"><ion-icon size="large" name="person-circle-outline" color="red"></ion-icon></a>
-        <a href="user?actionName=logout"><ion-icon size="large" name="exit-outline"></ion-icon></a>
+        <a href="profile.jsp"><ion-icon size="large" name="person-circle-outline" color="red"></ion-icon></a>
+        <a href="${pageContext.request.contextPath}/user?actionName=logout"><ion-icon size="large" name="exit-outline"></ion-icon></a>
     </div>
 
     <div class="sidebar">
@@ -215,9 +216,7 @@
                     <span style="color:red;font-size:12px;" id="msg"></span>
                 </div>
             </form>
-
     </main>
-
 </body>
 
 </html>

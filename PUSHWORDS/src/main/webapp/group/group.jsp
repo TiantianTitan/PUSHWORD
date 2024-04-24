@@ -69,6 +69,7 @@
             background-color: gray;
             width: 1447px;
             overflow: hidden;
+            height: 100%;
         }
 
         .table {
@@ -125,9 +126,26 @@
             background-color: #c33c24;
         }
 
+        #loading {
+            background-color: #fff; /* 背景颜色 */
+            position: fixed; /* 固定位置覆盖整个页面 */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999; /* 确保加载动画显示在最顶层 */
+            display: flex;
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
+        }
     </style>
 </head>
 <body>
+
+<div id="loading">
+    <div class="loader"><div class="loader"><img src="${pageContext.request.contextPath}/statics/images/load.png" width="296" height="140"></div> </div> <!-- 你可以替换为自己的加载动画 -->
+</div>
+
 <div class="icons-container">
     <a href="user/profile.jsp"><ion-icon size="large" name="person-circle-outline"></ion-icon></a>
     <a href="user?actionName=logout"><ion-icon size="large" name="exit-outline"></ion-icon></a>
@@ -142,10 +160,11 @@
             </ul>
         </div>
 
-    <main class="main-content">
+    <main class="main-content" id="page-content">
         <div id="myDiv">
             <c:if test="${empty groupList}">
                 <h2> data not found </h2>
+
             </c:if>
             <c:if test="${!empty groupList}">
             <table class="table table-hover table-striped">
@@ -176,6 +195,17 @@
 
      <!-- La zone de contenu principal -->
     </main>
+
+
+<script>
+    window.onload = function() {
+        // 当页面全部加载完毕后执行这段代码
+        var loadingAnimation = document.getElementById('loading');
+        loadingAnimation.style.display = 'none'; // 隐藏加载动画
+        var pageContent = document.getElementById('page-content');
+        pageContent.style.display = 'block'; // 显示页面内容
+    };
+</script>
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
