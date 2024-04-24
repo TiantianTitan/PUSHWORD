@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Site de Mémorisation de Mots</title>
-    <link rel="stylesheet" href="statics/css/index.css">
+    <link rel="stylesheet" href="./statics/css/index.css">
     <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
     <style>
@@ -59,8 +59,15 @@
         }
 
         .main-content {
+            display: flex;
             margin-left: 220px; /* 考虑到sidebar宽度和一些间隙 */
             padding: 20px;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: gray;
+            width: 1447px;
+            overflow: hidden;
         }
     </style>
 </head>
@@ -77,13 +84,11 @@
             <li><a href="reports.jsp">Rapports de Données</a></li>
         </ul>
     </div>
-    <main class = main-content>
-        <h1>Publish Page</h1>
+    <main class="main-content">
+        <h2>Publish Page</h2>
 
         <!-- La zone de contenu principal -->
     </main>
-    <footer>
-        <p>&copy; 2024 Site de Mémorisation de Mots. Tous droits réservés.</p>
-    </footer>
+
 </body>
 </html>

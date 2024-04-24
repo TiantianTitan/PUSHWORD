@@ -59,8 +59,15 @@
         }
 
         .main-content {
+            display: flex;
             margin-left: 220px; /* 考虑到sidebar宽度和一些间隙 */
             padding: 20px;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: gray;
+            width: 1447px;
+            overflow: hidden;
         }
     </style>
 </head>
