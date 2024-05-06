@@ -19,23 +19,24 @@ function deleteGroup(groupId) {
         confirmButtonText: "Yes",
         cancelButtonText: "No"
     }).then(function () {
-        $.ajax({
-            type: "post",
-            url: "type",
-            data:{
-                actionName:"delete",
-                groupId:groupId
-            },
-            success:function (result){
-                if(result.code == 1){
-                    swal.fire("","<h3> delete successfully</h3>","success");
-                    deleteDom(groupId);
-                }else{
-                    swal.fire("","<h3"+result.msg+"</h3>","error");
-
-                }
-            }
-
-        })
+        alert(1);
+        // $.ajax({
+        //     type: "post",
+        //     url: "type",
+        //     data:{
+        //         actionName:"delete",
+        //         groupId:groupId
+        //     },
+        //     success:function (result){
+        //         if(result.code == 1){
+        //             Swal.fire("","<h3> delete successfully</h3>","success");
+        //             deleteDom(groupId);
+        //         }else{
+        //             Swal.fire("","<h3"+result.msg+"</h3>","error");
+        //
+        //         }
+        //     }
+        //
+        // })
     });
 }

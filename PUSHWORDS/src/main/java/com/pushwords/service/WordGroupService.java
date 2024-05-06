@@ -25,23 +25,22 @@ public class WordGroupService {
             resultInfo.setMsg("System error, try again");
             return resultInfo;
         }
-        long wordCount = groupDao.findWordCountByGroupId(groupId);
-        if(wordCount > 0){
-            resultInfo.setCode(0);
-            resultInfo.setMsg("words exist, couldn't delete");
-            return  resultInfo;
-        }
+
+//        long wordCount = groupDao.findWordCountByGroupId(groupId);
+//        if(wordCount > 0){
+//            resultInfo.setCode(0);
+//            resultInfo.setMsg("words exist, couldn't delete");
+//            return  resultInfo;
+//        }
+
         int row = groupDao.deleteGroupById(groupId);
 
         if(row >0){
             resultInfo.setCode(1);
         }else{
             resultInfo.setCode(0);
-            resultInfo.setMsg("delete fail!");
+            resultInfo.setMsg("delete group fail!");
         }
-
-
-
 
         return resultInfo;
 

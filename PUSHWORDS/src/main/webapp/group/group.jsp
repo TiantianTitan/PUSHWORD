@@ -167,10 +167,9 @@
 
             </c:if>
             <c:if test="${!empty groupList}">
-            <table class="table table-hover table-striped">
+            <table id="myTable" class="table table-hover table-striped">
                 <tbody>
                     <tr>
-                        <th>Group ID</th>
                         <th>Group Name</th>
                         <th>Group Description</th>
                         <th>Options</th>
@@ -178,7 +177,6 @@
                     </tr>
                         <c:forEach items="${groupList}" var="item">
                             <tr id="tr_${item.groupId}">
-                                <td>${item.groupId}</td>
                                 <td>${item.groupName}</td>
                                 <td>${item.groupDescription}</td>
                                 <td>
