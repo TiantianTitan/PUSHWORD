@@ -243,11 +243,10 @@
 
 <script>
     window.onload = function() {
-        // 当页面全部加载完毕后执行这段代码
         var loadingAnimation = document.getElementById('loading');
-        loadingAnimation.style.display = 'none'; // 隐藏加载动画
+        loadingAnimation.style.display = 'none';
         var pageContent = document.getElementById('page-content');
-        pageContent.style.display = 'block'; // 显示页面内容
+        pageContent.style.display = 'block';
     };
 </script>
 

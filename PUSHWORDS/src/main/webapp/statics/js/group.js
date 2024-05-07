@@ -12,34 +12,38 @@ function deleteDom(groupId) {
 function deleteGroup(groupId) {
     Swal.fire({
         title: "",
-        html: "<h3>Are you sure ? Delete it ?</h3>",
-        type: "warning",
+        html: "<h3>Are you sure? Delete it?</h3>",
+        icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "orange",
         confirmButtonText: "Yes",
         cancelButtonText: "No"
-    }).then(function () {
-        $.ajax({
-            type: "post",
-            url: "group",
-            data:{
-                actionName:"delete",
-                groupId: groupId
-            },
-            success:function (result){
-                if(result.code == 1){
-                    Swal.fire("","<h3> delete successfully</h3>","success");
-                    deleteDom(groupId);
-                }else{
-                    Swal.fire("","<h3"+result.msg+"</h3>","error");
-
+    }).then((result) => {
+        // Only proceed with the deletion if the user confirmed by clicking "Yes"
+        if (result.isConfirmed) {
+            $.ajax({
+                type: "post",
+                url: "group",
+                data: {
+                    actionName: "delete",
+                    groupId: groupId
+                },
+                success: function (result) {
+                    if (result.code == 1) {
+                        Swal.fire("", "<h3>Deleted successfully</h3>", "success");
+                        deleteDom(groupId);
+                    } else {
+                        Swal.fire("", "<h3>" + result.msg + "</h3>", "error");
+                    }
+                },
+                error: function () {
+                    Swal.fire("", "<h3>Error: Unable to process your request.</h3>", "error");
                 }
-            }
-
-
-        })
+            });
+        }
     });
 }
+
 
 
 
@@ -104,7 +108,17 @@ $("#btn_submit").click(function (event) {
         success: function (result) {
             if (result.code == 1) {
                 $('#myModal').modal('hide'); // Close the modal
-                Swal.fire("", "<h3>Group saved successfully!</h3>", "success");
+                Swal.fire({
+                    title: "",
+                    html: "<h3>Group saved successfully!</h3>",
+                    icon: "success",
+                    confirmButtonText: "OK"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Reload the page after clicking "OK"
+                        location.reload();
+                    }
+                });
             } else {
                 $("#msg").html(result.msg); // Show error message
             }
@@ -114,3 +128,4 @@ $("#btn_submit").click(function (event) {
         }
     });
 });
+
