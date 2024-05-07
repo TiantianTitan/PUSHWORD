@@ -8,45 +8,61 @@
     <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
     <style>
-        /* 添加新的图标容器样式 */
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+        }
+
         .icons-container {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around; /* Center icons horizontally */
+            align-items: center; /* Center icons vertically */
             background-color: #333;
             color: #fff;
             padding: 10px;
-            width: 200px; /* 与sidebar宽度一致 */
+            width: 100%; /* Full width */
             position: fixed;
             top: 0;
-            z-index: 5;
-        }
-        .icons-container ion-icon {
-            color: #FFFFFF; /* 这里可以设置您喜欢的颜色 */
+            z-index: 1000;
         }
 
+        .custom-icon {
+            font-size: 60px; /* Increase icon size */
+            color: white; /* Icon color */
+        }
 
-        /* 更新sidebar的样式 */
         .sidebar {
             background-color: #333;
             color: #fff;
-            padding: 10px;
-            height: calc(100% - 50px); /* 减去图标容器的高度 */
-            width: 200px;
+            padding: 60px 20px; /* Add padding around sidebar links */
+            width: 200px; /* Adjust sidebar width */
+            height: calc(100vh - 60px); /* Adjust height excluding icon container */
             position: fixed;
-            top: 50px; /* 从图标容器下方开始 */
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            top: 60px; /* Match the height of icons container */
+            left: 0;
+            box-sizing: border-box;
         }
 
         .sidebar ul {
-            list-style-type: none;
+            list-style: none;
             padding: 0;
             margin: 0;
+            font-size: 18px; /* Increase font size for better visibility */
         }
 
         .sidebar li {
-            margin-bottom: 10px;
+            margin-bottom: 15px; /* Add margin between each link */
         }
 
         .sidebar li a {
@@ -59,27 +75,67 @@
         }
 
         .main-content {
+            margin-left: 220px; /* Leave space for sidebar */
+            width: calc(100% - 220px); /* Adjusted for new sidebar width */
+            padding: 30px;
             display: flex;
-            margin-left: 220px; /* 考虑到sidebar宽度和一些间隙 */
-            padding: 20px;
-            justify-content: center;
-            align-items: center;
             flex-direction: column;
-            background-color: gray;
-            width: 1447px;
-            overflow: hidden;
-            height: 100%;
+            align-items: center;
+            justify-content: center;
+            background-color: #e8e8e8;
+            box-sizing: border-box;
+            min-height: 100vh;
+            overflow-y: auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px; /* Adjust form field spacing */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-size: 16px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #0056b3;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #003875;
         }
     </style>
+
 </head>
 <body>
-<!-- 新的图标容器 -->
+
 <div class="icons-container">
-    <a href="user/profile.jsp"><ion-icon size="large" name="person-circle-outline"></ion-icon></a>
-    <a href="user?actionName=logout"><ion-icon size="large" name="exit-outline"></ion-icon></a>
+    <div class="icon-wrapper">
+        <a href="user/profile.jsp"><ion-icon class="custom-icon" name="person-circle-outline"></ion-icon></a>
+    </div>
+    <div class="icon-wrapper">
+        <a href="user?actionName=logout"><ion-icon class="custom-icon" name="exit-outline"></ion-icon></a>
+    </div>
 </div>
 
-<!-- 更新后的sidebar -->
 <div class="sidebar">
     <ul>
         <li class="current"><a href="index.jsp">Accueil</a></li>
