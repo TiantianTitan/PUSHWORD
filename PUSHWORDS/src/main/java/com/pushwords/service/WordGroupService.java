@@ -45,4 +45,40 @@ public class WordGroupService {
         return resultInfo;
 
     }
+
+    public ResultInfo<Integer> addOrUpdateGroup(String groupName, Integer userId, String groupId, String groupDescription) {
+        ResultInfo<Integer> resultInfo = new ResultInfo<>();
+        if(StrUtil.isBlank(groupName)){
+            resultInfo.setCode(0);
+            resultInfo.setMsg("Name could not be empty");
+            return  resultInfo;
+        }
+
+        Integer code = groupDao.checkGroupName(groupName,userId,groupId,groupDescription);
+        if(code == 0){
+            resultInfo.setCode(0);
+            resultInfo.setMsg("group exists");
+            return  resultInfo;
+        }
+
+
+        Integer key = null;
+        if(StrUtil.isBlank(groupId)){
+            // add
+            key = groupDao.addGroup(groupName,userId,groupDescription);
+        }else {
+            // modify
+            key = groupDao.updateGroup(groupName,groupId,groupDescription);
+        }
+
+
+        if(key > 0){
+            resultInfo.setCode(1);
+            resultInfo.setResult(key);
+        }else {
+            resultInfo.setCode(0);
+            resultInfo.setMsg("update error");
+        }
+        return  resultInfo;
+    }
 }

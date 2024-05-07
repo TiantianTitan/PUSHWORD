@@ -31,7 +31,21 @@ public class WordGroupServlet extends HttpServlet {
             groupList(request,response);
         } else if ("delete".equals(actionName)) {
             deleteGroup(request,response);
+        } else if ("addOrUpdate".equals(actionName)){
+            addOrUpdateGroup(request,response);
         }
+    }
+
+    private void addOrUpdateGroup(HttpServletRequest request, HttpServletResponse response) {
+        String groupName = request.getParameter("groupName");
+        String groupId = request.getParameter("groupId");
+        String groupDescription = request.getParameter("groupDescription");
+
+        User user = (User) request.getSession().getAttribute("user");
+
+        ResultInfo<Integer> resultInfo = groupService.addOrUpdateGroup(groupName,user.getUserId(),groupId,groupDescription);
+        JsonUtil.toJson(response,resultInfo);
+
     }
 
     private void deleteGroup(HttpServletRequest request, HttpServletResponse response) {
