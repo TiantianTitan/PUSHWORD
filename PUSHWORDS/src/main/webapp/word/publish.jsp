@@ -6,9 +6,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Site de Mémorisation de Mots</title>
-    <link rel="stylesheet" href="../statics/css/index.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/statics/css/index.css">
     <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <style>
         body, html {
             height: 100%;
@@ -187,26 +189,32 @@
                     <br><br>
                     <label>Explication:</label>
                     <input type="text" id="explication" value="">
-                    <button type="submit">Save</button>
+                    <button type="submit" onclick="return checkForm()">Save</button>
+                    &nbsp;<span id="msg" style="font-size: 12px; color:red"></span>
                 </div>
             </c:if>
 
-<%--            <h2>Save your word</h2>--%>
-<%--                <label for="category">Group:</label>--%>
-<%--                <select id="category">--%>
-<%--                    <option value="note">笔记</option>--%>
-<%--                </select>--%>
-<%--            </div>--%>
-<%--            <div class="form-group">--%>
-<%--                <label for="title">Title:</label>--%>
-<%--                <input type="text" id="title" value="">--%>
-<%--                <br><br>--%>
-<%--                <label>Explication:</label>--%>
-<%--                <input type="text" id="explication" value="">--%>
-<%--            </div>--%>
-
-
     </div>
+
+    <script type="text/javascript">
+        function  checkForm(){
+            var title = $("#title").val();
+            var explication = $("#explication").val();
+
+            if(title.trim() === ""){
+                $("#msg").html("Enter the word!")
+                return  false;
+            }
+
+            if(explication.trim() === ""){
+                $("#msg").html("Give the explication!")
+                return  false;
+            }
+
+        }
+
+    </script>
+
 </main>
 
 </body>
