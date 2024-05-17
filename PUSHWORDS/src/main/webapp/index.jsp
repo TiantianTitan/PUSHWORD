@@ -139,7 +139,7 @@
 <div class="sidebar">
     <ul>
         <li class="current"><a href="index.jsp">Accueil</a></li>
-        <li><a href="publish.jsp">Publier</a></li>
+        <li><a href="word?actionName=view">Publier</a></li>
         <li><a href="group?actionName=list">Gestion des Catégories</a></li>
         <li><a href="reports.jsp">Rapports de Données</a></li>
     </ul>

@@ -70,7 +70,6 @@ public class UserServlet extends HttpServlet {
             request.getRequestDispatcher("login.jsp").forward(request,response);
         }
 
-
     }
     private void userLogOut(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.getSession().invalidate();
