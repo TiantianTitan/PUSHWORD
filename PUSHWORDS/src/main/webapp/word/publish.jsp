@@ -166,18 +166,18 @@
 <main class="main-content">
     <!-- La zone de contenu principal -->
     <div class="container">
+        <c:if test="${empty groupList}">
+            <h2>No Group exists!</h2>
+            <h4><a href="group?actionName=list">Add Group</a></h4>
+        </c:if>
 
-
-            <c:if test="${empty groupList}">
-                <h2> No Group exists! </h2>
-                <h4><a href="group?actionName=list">Add Group</a></h4>
-            </c:if>
-
-            <c:if test="${not empty groupList}">
+        <c:if test="${not empty groupList}">
+            <form class="form-group" method="post" action="${pageContext.request.contextPath}/word">
+                <input type="hidden" name="actionName" value="addOrUpdate">
                 <div class="form-group">
                     <h2>Save your word</h2>
                     <label for="category">Group:</label>
-                    <select id="category">
+                    <select id="category" name="groupId">
                         <c:forEach var="item" items="${groupList}">
                             <option value="${item.groupId}">${item.groupName}</option>
                         </c:forEach>
@@ -185,34 +185,32 @@
                 </div>
                 <div class="form-group">
                     <label for="title">Title:</label>
-                    <input type="text" id="title" value="">
+                    <input type="text" id="title" name="title" placeholder="Enter the word" value="${resultInfo.result.title}">
                     <br><br>
                     <label>Explication:</label>
-                    <input type="text" id="explication" value="">
+                    <input type="text" id="explication" name="content" placeholder="Enter the description" value="${resultInfo.result.content}">
                     <button type="submit" onclick="return checkForm()">Save</button>
                     &nbsp;<span id="msg" style="font-size: 12px; color:red"></span>
                 </div>
-            </c:if>
-
+            </form>
+        </c:if>
     </div>
 
     <script type="text/javascript">
-        function  checkForm(){
+        function checkForm() {
             var title = $("#title").val();
             var explication = $("#explication").val();
 
-            if(title.trim() === ""){
-                $("#msg").html("Enter the word!")
-                return  false;
+            if (title.trim() === "") {
+                $("#msg").html("Enter the word!");
+                return false;
             }
 
-            if(explication.trim() === ""){
-                $("#msg").html("Give the explication!")
-                return  false;
+            if (explication.trim() === "") {
+                $("#msg").html("Give the explication!");
+                return false;
             }
-
         }
-
     </script>
 
 </main>

@@ -1,8 +1,12 @@
 package com.pushwords.web;
 
+import com.mysql.cj.protocol.Resultset;
 import com.pushwords.po.User;
+import com.pushwords.po.Word;
 import com.pushwords.po.WordGroup;
 import com.pushwords.service.WordGroupService;
+import com.pushwords.service.WordService;
+import com.pushwords.vo.ResultInfo;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +19,8 @@ import java.util.List;
 @WebServlet("/word")
 public class WordServlet extends HttpServlet {
 
+    private WordService wordService = new WordService();
+
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -22,8 +28,24 @@ public class WordServlet extends HttpServlet {
 
         if("view".equals(actionName)){
             wordView(request,response);
+        }else if ("addOrUpdate".equals(actionName)){
+            addOrUpdate(request,response);
         }
 
+
+    }
+
+    private void addOrUpdate(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String groupId = request.getParameter("groupId");
+        String title = request.getParameter("title");
+        String content = request.getParameter("content");
+        ResultInfo<Word> resultInfo = wordService.addOrUpdate(groupId,title,content);
+        if(resultInfo.getCode() == 1){  // Success
+            response.sendRedirect("index.jsp");
+        }else{ // Fail
+            request.setAttribute("resultInfo",resultInfo);
+            request.getRequestDispatcher("word?actionName=view").forward(request,response);
+        }
 
     }
 
