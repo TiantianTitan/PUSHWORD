@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-
 @WebServlet("/word")
 public class WordServlet extends HttpServlet {
 
@@ -28,12 +27,16 @@ public class WordServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String actionName = request.getParameter("actionName");
 
-        if ("view".equals(actionName)) {
+        if("view".equals(actionName)){
             wordView(request, response);
-        } else if ("addOrUpdate".equals(actionName)) {
+        } else if ("addOrUpdate".equals(actionName)){
             addOrUpdate(request, response);
-        } else if ("showWords".equals(actionName)) {
+        } else if("showWords".equals(actionName)){
             showWords(request, response);
+        } else if("deleteWord".equals(actionName)){
+            deleteWord(request, response);
+        } else if("updateWord".equals(actionName)){
+            updateWord(request, response);
         }
     }
 
@@ -52,12 +55,32 @@ public class WordServlet extends HttpServlet {
         String title = request.getParameter("title");
         String content = request.getParameter("content");
         ResultInfo<Word> resultInfo = wordService.addOrUpdate(groupId, title, content);
-        if (resultInfo.getCode() == 1) {  // Success
-            response.sendRedirect("index.jsp");
-        } else { // Fail
+        if(resultInfo.getCode() == 1){
+            response.sendRedirect("word?actionName=showWords&groupId=" + groupId);
+        } else {
             request.setAttribute("resultInfo", resultInfo);
-            request.getRequestDispatcher("word?actionName=view").forward(request, response);
+            request.getRequestDispatcher("word?actionName=showWords&groupId=" + groupId).forward(request, response);
         }
+    }
+
+    private void deleteWord(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String wordId = request.getParameter("wordId");
+        String groupId = request.getParameter("groupId");
+        wordService.deleteWord(wordId);
+        response.sendRedirect("word?actionName=showWords&groupId=" + groupId);
+    }
+
+    private void updateWord(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String wordId = request.getParameter("wordId");
+        String groupId = request.getParameter("groupId");
+        String title = request.getParameter("title");
+        String content = request.getParameter("content");
+        Word word = new Word();
+        word.setWordId(Integer.parseInt(wordId));
+        word.setTitle(title);
+        word.setContent(content);
+        wordService.updateWord(word);
+        response.sendRedirect("word?actionName=showWords&groupId=" + groupId);
     }
 
     private void wordView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
