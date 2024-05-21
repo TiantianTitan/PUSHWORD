@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -139,6 +139,7 @@
                 <li><a href="index.jsp">Accueil</a></li>
                 <li><a href="word?actionName=view">Publier</a></li>
                 <li><a href="group?actionName=list">Gestion des Catégories</a></li>
+                <li><a href="${pageContext.request.contextPath}/mem?actionName=list">Memoriser</a></li>
                 <li class="current"><a href="reports.jsp">Rapports de Données</a></li>
             </ul>
         </div>
