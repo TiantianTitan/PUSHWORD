@@ -17,6 +17,8 @@ public class IndexServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         request.setAttribute("menu_page","index");
 //
 //        wordList(request,response);

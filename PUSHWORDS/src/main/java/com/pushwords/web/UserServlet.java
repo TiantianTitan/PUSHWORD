@@ -42,7 +42,8 @@ public class UserServlet extends HttpServlet {
 
 
     private void userLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         String userName = request.getParameter("userName");
         String userPwd = request.getParameter("userPwd");
 

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -173,7 +174,7 @@
         </c:if>
 
         <c:if test="${not empty groupList}">
-            <form class="form-group" method="post" action="${pageContext.request.contextPath}/word">
+            <form class="form-group" method="post" action="${pageContext.request.contextPath}/word" accept-charset="UTF-8">
                 <input type="hidden" name="actionName" value="addOrUpdate">
                 <div class="form-group">
                     <h2>Save your word</h2>

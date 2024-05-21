@@ -217,7 +217,7 @@
     <main class="main-content">
 
             <h2>Profil</h2>
-            <form id="formModify" method="post" action="../user?actionName=updateUser" enctype="multipart/form-data">
+            <form id="formModify" method="post" action="${pageContext.request.contextPath}/user?actionName=updateUser" enctype="multipart/form-data">
                 <input type="hidden" name="actionName" value="updateUser">
 
                 <div class="form-group">
