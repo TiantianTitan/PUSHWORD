@@ -204,7 +204,7 @@
         <c:if test="${!empty groupList}">
             <div class="cards-container">
                 <c:forEach items="${groupList}" var="item">
-                    <div class="card" onclick="handleCardClick(${item.groupId})">
+                    <div class="card" onclick="handleCardClick(${item.groupId}, '${item.groupName}')">
                         <h3>${item.groupName}</h3>
                         <p>${item.groupDescription}</p>
                     </div>
@@ -219,13 +219,8 @@
     $(window).on('load', function() {
         $("#loading").fadeOut("slow");
     });
-
-    function handleCardClick(groupId) {
-        // Your custom JS code for handling the card click event
-        alert(1);
-        console.log("Card clicked, groupId:", groupId);
-    }
 </script>
-
 </body>
+
+<script src="${pageContext.request.contextPath}/statics/js/mem.js"></script>
 </html>
