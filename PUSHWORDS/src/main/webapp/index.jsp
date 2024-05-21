@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -149,6 +150,42 @@
     <h1>---------PUSHWORD----------</h1>
     <h2>Magical tool for the words</h2>
     <!-- 主内容 -->
+    <div id="myDiv">
+        <c:if test="${empty groupList}">
+            <h2> No data Found! </h2>
+
+        </c:if>
+        <c:if test="${!empty groupList}">
+            <table id="myTable" class="table table-hover table-striped">
+                <tbody>
+                <tr>
+                    <th>Group Name</th>
+                    <th>Group Description</th>
+                    <th>Options</th>
+
+                </tr>
+                <c:forEach items="${groupList}" var="item">
+                    <tr id="tr_${item.groupId}">
+                        <td>${item.groupName}</td>
+                        <td>${item.groupDescription}</td>
+                        <td>
+                            <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#myModal"
+                                    data-modal-title="Modify Group"
+                                    data-group-id="${item.groupId}"
+                                    data-group-name="${item.groupName}"
+                                    data-group-description="${item.groupDescription}">
+                                Modify
+                            </button>
+                            <button class="button delete" onclick="deleteGroup(${item.groupId})">delete</button>
+                        </td>
+
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </c:if>
+    </div>
+
 </main>
 </body>
 </html>

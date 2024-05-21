@@ -3,7 +3,10 @@ package com.pushwords.service;
 import cn.hutool.core.util.StrUtil;
 import com.pushwords.dao.WordDao;
 import com.pushwords.po.Word;
+import com.pushwords.util.Page;
 import com.pushwords.vo.ResultInfo;
+
+import java.util.List;
 
 public class WordService {
 
@@ -47,5 +50,30 @@ public class WordService {
         }
 
         return  resultInfo;
+    }
+
+    public Page<Word> findWordListByPage(String pageNumStr, String pageSizeStr, Integer userId) {
+        Integer pageNum = 1;
+        Integer pageSize = 10;
+
+        if(!StrUtil.isBlank(pageNumStr)){
+            pageNum = Integer.parseInt(pageNumStr);
+        }
+        if(!StrUtil.isBlank(pageSizeStr)){
+            pageSize = Integer.parseInt(pageSizeStr);
+        }
+
+        long count = wordDao.findWordCount(userId);
+        if(count < 1){
+            return  null;
+        }
+        Page<Word> page = new Page<>(pageNum,pageSize,count);
+
+        Integer index = (pageNum-1)*pageSize;
+
+        List<Word> wordList = wordDao.findWordListByPage(userId,index,pageSize);
+
+        page.setDataList(wordList);
+        return page;
     }
 }
