@@ -72,7 +72,7 @@ public class UserService {
         ResultInfo<User> resultInfo = new ResultInfo<>();
 
         String nick = request.getParameter("nick");
-        String mood = request.getParameter("mood");
+        String mood = request.getParameter("mood").trim();
 
         if(StrUtil.isBlank(nick)){
             resultInfo.setCode(0);

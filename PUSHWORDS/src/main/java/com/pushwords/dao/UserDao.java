@@ -45,7 +45,7 @@ public class UserDao {
                 user.setUserId(resultSet.getInt("userId"));
                 user.setUname(userName);
                 user.setHead(resultSet.getString("head"));
-                user.setMood(resultSet.getString("mood"));
+                user.setMood(resultSet.getString("mood").trim());
                 user.setNick(resultSet.getString("nick"));
                 user.setUpwd(resultSet.getString("upwd"));
             }
@@ -71,7 +71,7 @@ public class UserDao {
 
         List<Object> params = new ArrayList<>();
         params.add(user.getNick());
-        params.add(user.getMood());
+        params.add(user.getMood().trim());
         params.add(user.getHead());
         params.add(user.getUserId());
 
