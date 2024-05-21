@@ -52,9 +52,15 @@ public class WordService {
         return  resultInfo;
     }
 
-    public Page<Word> findWordListByPage(String pageNumStr, String pageSizeStr, Integer userId) {
+    public Page<Word> findWordListByPage(String pageNumStr, String pageSizeStr, String groupIdStr) {
         Integer pageNum = 1;
         Integer pageSize = 10;
+
+        if(StrUtil.isBlank(groupIdStr)){
+            return  null;
+        }
+
+        Integer groupId = Integer.parseInt(groupIdStr);
 
         if(!StrUtil.isBlank(pageNumStr)){
             pageNum = Integer.parseInt(pageNumStr);
@@ -63,7 +69,7 @@ public class WordService {
             pageSize = Integer.parseInt(pageSizeStr);
         }
 
-        long count = wordDao.findWordCount(userId);
+        long count = wordDao.findWordCount(groupId);
         if(count < 1){
             return  null;
         }
@@ -71,9 +77,10 @@ public class WordService {
 
         Integer index = (pageNum-1)*pageSize;
 
-        List<Word> wordList = wordDao.findWordListByPage(userId,index,pageSize);
+        List<Word> wordList = wordDao.findWordListByPage(groupId,index,pageSize);
 
         page.setDataList(wordList);
         return page;
     }
+
 }

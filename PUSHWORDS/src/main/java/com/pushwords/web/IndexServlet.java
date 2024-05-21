@@ -18,22 +18,11 @@ public class IndexServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("menu_page","index");
-
-        wordList(request,response);
+//
+//        wordList(request,response);
 
         request.setAttribute("changePage","word/publish.jsp"); // TO CHANGE
         request.getRequestDispatcher("index.jsp").forward(request,response);
     }
 
-    private void wordList(HttpServletRequest request, HttpServletResponse response) {
-        String pageNum = request.getParameter("pageNum");
-        String pageSize = request.getParameter("pageSize");
-
-        User user = (User) request.getSession().getAttribute("user");
-
-        Page<Word> page = new WordService().findWordListByPage(pageNum,pageSize,user.getUserId());
-
-        request.setAttribute("page",page);
-
-    }
 }
