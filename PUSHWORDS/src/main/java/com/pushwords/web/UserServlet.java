@@ -47,31 +47,32 @@ public class UserServlet extends HttpServlet {
         String userName = request.getParameter("userName");
         String userPwd = request.getParameter("userPwd");
 
-        ResultInfo<User> resultInfo = userService.userLogin(userName,userPwd);
+        ResultInfo<User> resultInfo = userService.userLogin(userName, userPwd);
 
-        if(resultInfo.getCode() == 1){
-            request.getSession().setAttribute("user",resultInfo.getResult());
+        if (resultInfo.getCode() == 1) {
+            User user = resultInfo.getResult();
+            request.getSession().setAttribute("user", user);
+            request.getSession().setAttribute("userId", user.getUserId());  // 将 userId 设置到 session 中
 
             String rem = request.getParameter("rem");
             Cookie cookie;
-            if("1".equals(rem)){
-                cookie = new Cookie("user",userName +"-"+userPwd);
-                cookie.setMaxAge(3*24*60*60);
+            if ("1".equals(rem)) {
+                cookie = new Cookie("user", userName + "-" + userPwd);
+                cookie.setMaxAge(3 * 24 * 60 * 60);
                 response.addCookie(cookie);
-            }else {
-                cookie = new Cookie("user",null);
+            } else {
+                cookie = new Cookie("user", null);
                 cookie.setMaxAge(0);
                 response.addCookie(cookie);
             }
 
             response.sendRedirect("index.jsp");
-        }else{
-            request.setAttribute("resultInfo",resultInfo);
-
-            request.getRequestDispatcher("login.jsp").forward(request,response);
+        } else {
+            request.setAttribute("resultInfo", resultInfo);
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         }
-
     }
+
     private void userLogOut(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.getSession().invalidate();
         Cookie cookie = new Cookie("user",null);

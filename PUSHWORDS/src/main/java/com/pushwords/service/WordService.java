@@ -1,6 +1,8 @@
 package com.pushwords.service;
 
+import com.pushwords.dao.TestResultDao;
 import com.pushwords.dao.WordDao;
+import com.pushwords.po.TestResult;
 import com.pushwords.po.Word;
 import com.pushwords.util.Page;
 import com.pushwords.vo.ResultInfo;
@@ -11,6 +13,7 @@ import java.util.List;
 public class WordService {
 
     private final WordDao wordDao = new WordDao();
+    private final TestResultDao testResultDao = new TestResultDao();
 
     public ResultInfo<Word> addOrUpdate(String groupId, String title, String content) {
         ResultInfo<Word> resultInfo = new ResultInfo<>();
@@ -78,5 +81,13 @@ public class WordService {
 
     public List<Word> getWordsByGroupId(int groupId) {
         return wordDao.findWordsByGroupId(groupId);
+    }
+
+    public void saveTestResult(TestResult testResult) {
+        testResultDao.saveTestResult(testResult);
+    }
+
+    public List<TestResult> findTestResultsByUserId(int userId) {
+        return testResultDao.findTestResultsByUserId(userId);
     }
 }

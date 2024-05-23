@@ -95,6 +95,18 @@
         <p>Time Taken: <span id="timeTaken"></span> seconds</p>
         <button class="button" onclick="window.location.href='${pageContext.request.contextPath}/word?actionName=showWords&groupId=${param.groupId}'">Return to Words</button>
     </div>
+
+    <!-- Hidden form to submit results -->
+    <form id="resultForm" method="post" action="${pageContext.request.contextPath}/study?actionName=saveResult" style="display:none;">
+        <input type="hidden" name="userId" id="userId" value="${sessionScope.user.userId}">
+        <input type="hidden" name="groupId" id="groupId" value="${param.groupId}">
+        <input type="hidden" name="totalWords" id="totalWordsField">
+        <input type="hidden" name="correctAnswers" id="correctAnswersField">
+        <input type="hidden" name="accuracy" id="accuracyField">
+        <input type="hidden" name="timeTaken" id="timeTakenField">
+    </form>
+
+
 </main>
 
 <script>
@@ -120,11 +132,27 @@
             document.getElementById('accuracy').innerText = ((correctCount / words.length) * 100).toFixed(2);
             document.getElementById('timeTaken').innerText = timeTaken;
 
+            document.getElementById('totalWordsField').value = words.length;
+            document.getElementById('correctAnswersField').value = correctCount;
+            document.getElementById('accuracyField').value = ((correctCount / words.length) * 100).toFixed(2);
+            document.getElementById('timeTakenField').value = timeTaken;
+
+            // 确保userId正确设置
+            const userIdElement = document.getElementById('userId');
+            if (!userIdElement.value) {
+                alert("User ID is missing. Please log in.");
+                return;
+            }
+
             document.getElementById('studyContainer').style.display = 'none';
             document.getElementById('resultsContainer').style.display = 'flex';
+
+            // 提交表单以保存结果
+            document.getElementById('resultForm').submit();
             return;
         }
 
+        // 题目加载逻辑
         const currentWord = words[currentIndex];
         document.getElementById('questionTitle').innerText = currentWord.title;
         const optionsContainer = document.getElementById('options');
@@ -158,6 +186,7 @@
             optionsContainer.appendChild(button);
         });
     }
+
 
     shuffle(words);
     loadNextQuestion();
