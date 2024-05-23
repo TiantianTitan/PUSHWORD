@@ -191,7 +191,7 @@
         <li><a href="${pageContext.request.contextPath}/word?actionName=view">Publier</a></li>
         <li><a href="${pageContext.request.contextPath}/group?actionName=list">Gestion des Catégories</a></li>
         <li class="current"><a href="${pageContext.request.contextPath}/mem?actionName=list">Memoriser</a></li>
-        <li><a href="${pageContext.request.contextPath}/reports.jsp">Rapports de Données</a></li>
+        <li><a href="${pageContext.request.contextPath}/report?actionName=showReports">Rapports de Données</a></li>
     </ul>
 </div>
 

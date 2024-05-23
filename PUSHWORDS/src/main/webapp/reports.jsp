@@ -2,7 +2,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Test Reports</title>
@@ -59,9 +59,7 @@
 
 <main class="main-content">
     <h1>Test Reports</h1>
-    <c:out value="${testResults}"></c:out>
     <button class="button" onclick="window.location.href='${pageContext.request.contextPath}/mem?actionName=list'">Retour à Memoriser</button>
-
 
     <c:choose>
         <c:when test="${empty testResults}">

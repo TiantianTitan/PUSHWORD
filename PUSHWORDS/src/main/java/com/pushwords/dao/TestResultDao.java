@@ -2,10 +2,6 @@ package com.pushwords.dao;
 
 import com.pushwords.po.TestResult;
 import com.pushwords.util.DBUtil;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,9 +33,15 @@ public class TestResultDao {
     }
 
     public List<TestResult> findTestResultsByUserId(int userId) {
-        String sql = "SELECT * FROM tb_test_result WHERE userId = ? ORDER BY testDate DESC";
+        String sql = "SELECT tr.*, g.groupName FROM tb_test_result tr JOIN tb_group g ON tr.groupId = g.groupId WHERE tr.userId = ? ORDER BY tr.testDate DESC";
         List<Object> params = new ArrayList<>();
         params.add(userId);
-        return (List<TestResult>) BaseDao.queryRows(sql, params, TestResult.class);
+
+        // Debug output
+        System.out.println("Executing SQL: " + sql);
+        System.out.println("With userId: " + userId);
+
+        List<TestResult> results = (List<TestResult>) BaseDao.queryRows(sql, params, TestResult.class);
+        return results;
     }
 }

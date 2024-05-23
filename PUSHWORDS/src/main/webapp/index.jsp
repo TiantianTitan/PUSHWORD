@@ -142,7 +142,7 @@
         <li><a href="word?actionName=view">Publier</a></li>
         <li><a href="group?actionName=list">Gestion des Catégories</a></li>
         <li><a href="mem?actionName=list">Memoriser</a></li>
-        <li><a href="reports.jsp">Rapports de Données</a></li>
+        <li><a href="report?actionName=showReports">Rapports de Données</a></li>
     </ul>
 </div>
 

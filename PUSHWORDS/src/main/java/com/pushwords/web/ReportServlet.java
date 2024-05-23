@@ -1,90 +1,54 @@
 package com.pushwords.web;
-import com.pushwords.po.TestResult;
-import com.pushwords.util.DatabaseConnection;
 
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
+import com.pushwords.po.TestResult;
+import com.pushwords.service.TestResultService;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.List;
 
-@WebServlet("/ReportServlet")
+@WebServlet("/report")
 public class ReportServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private final TestResultService testResultService = new TestResultService();
+
+    @Override
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+
+        String actionName = request.getParameter("actionName");
+        if ("showReports".equals(actionName)) {
+            showReports(request, response);
+        }
+    }
+
+    private void showReports(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         Integer userId = (Integer) session.getAttribute("userId");
 
         if (userId == null) {
+            System.out.println("User ID is not set in the session.");
             response.getWriter().println("User ID is not set in the session.");
             return;
         }
 
-        List<TestResult> testResults = new ArrayList<>();
-        try {
-            Connection conn = DatabaseConnection.getConnection();
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM tb_test_result WHERE userId = ?");
-            ps.setInt(1, userId);
-            ResultSet rs = ps.executeQuery();
+        System.out.println("Fetching test results for userId: " + userId);
+        List<TestResult> testResults = testResultService.findTestResultsByUserId(userId);
 
-            while (rs.next()) {
-                TestResult result = new TestResult();
-                result.setTestDate(rs.getTimestamp("testDate"));
-                result.setGroupId(rs.getInt("groupId"));
-                result.setTotalWords(rs.getInt("totalWords"));
-                result.setCorrectAnswers(rs.getInt("correctAnswers"));
-                result.setAccuracy(rs.getInt("accuracy"));
-                result.setTimeTaken(rs.getInt("timeTaken"));
-                testResults.add(result);
+        if (testResults == null || testResults.isEmpty()) {
+            System.out.println("No test results found for userId: " + userId);
+        } else {
+            for (TestResult result : testResults) {
+                System.out.println("Test result: " + result);
             }
-
-            request.setAttribute("testResults", testResults);
-            request.getRequestDispatcher("reports.jsp").forward(request, response);
-
-            rs.close();
-            ps.close();
-            conn.close();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
 
-        try {
-            Connection conn = DatabaseConnection.getConnection();
-            System.out.println("Database connection established.");
-
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM tb_test_result WHERE userId = ?");
-            ps.setInt(1, userId);
-            System.out.println("Executing query for userId: " + userId);
-
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                TestResult result = new TestResult();
-                result.setTestDate(rs.getTimestamp("testDate"));
-                result.setGroupId(rs.getInt("groupId"));
-                result.setTotalWords(rs.getInt("totalWords"));
-                result.setCorrectAnswers(rs.getInt("correctAnswers"));
-                result.setAccuracy(rs.getInt("accuracy"));
-                result.setTimeTaken(rs.getInt("timeTaken"));
-                testResults.add(result);
-            }
-
-            System.out.println("Number of results found: " + testResults.size());
-
-            request.setAttribute("testResults", testResults);
-            request.getRequestDispatcher("reports.jsp").forward(request, response);
-
-            rs.close();
-            ps.close();
-            conn.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        request.setAttribute("testResults", testResults);
+        request.getRequestDispatcher("reports.jsp").forward(request, response);
     }
-
 }

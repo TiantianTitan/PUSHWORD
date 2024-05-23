@@ -43,7 +43,7 @@ public class StudyServlet extends HttpServlet {
         String accuracyParam = request.getParameter("accuracy");
         String timeTakenParam = request.getParameter("timeTaken");
 
-        // 打印接收到的参数
+
         System.out.println("Received parameters:");
         System.out.println("userId: " + userIdParam);
         System.out.println("groupId: " + groupIdParam);
