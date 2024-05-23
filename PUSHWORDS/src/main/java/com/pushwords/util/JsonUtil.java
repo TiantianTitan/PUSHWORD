@@ -21,4 +21,8 @@ public  class JsonUtil {
         }
     }
 
+    public static String jsonString(Object object) {
+        return JSON.toJSONString(object);
+    }
+
 }

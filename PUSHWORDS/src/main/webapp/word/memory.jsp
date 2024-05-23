@@ -31,19 +31,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: center;
             background-color: #e8e8e8;
             box-sizing: border-box;
             min-height: 100vh;
             overflow-y: auto;
-        }
-
-        .header-section {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 20px;
         }
 
         .table {
@@ -150,10 +142,9 @@
 <body>
 
 <main class="main-content">
-    <div class="header-section">
-        <h1>Liste des mots pour le groupe</h1>
-        <button class="button" onclick="window.location.href='${pageContext.request.contextPath}/mem?actionName=list'">Retour à Memoriser</button>
-    </div>
+    <h1>Liste des mots pour le groupe</h1>
+    <button class="button" onclick="window.location.href='${pageContext.request.contextPath}/mem?actionName=list'">Retour à Memoriser</button>
+    <button class="button" onclick="window.location.href='${pageContext.request.contextPath}/study?actionName=startStudy&groupId=${param.groupId}'">Étudier</button>
     <c:if test="${empty page.dataList}">
         <h2>No data found for groupId ${param.groupId}</h2>
     </c:if>

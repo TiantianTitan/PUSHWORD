@@ -1,16 +1,16 @@
 package com.pushwords.service;
 
-import cn.hutool.core.util.StrUtil;
 import com.pushwords.dao.WordDao;
 import com.pushwords.po.Word;
 import com.pushwords.util.Page;
 import com.pushwords.vo.ResultInfo;
+import cn.hutool.core.util.StrUtil;
 
 import java.util.List;
 
 public class WordService {
 
-    private WordDao wordDao = new WordDao();
+    private final WordDao wordDao = new WordDao();
 
     public ResultInfo<Word> addOrUpdate(String groupId, String title, String content) {
         ResultInfo<Word> resultInfo = new ResultInfo<>();
@@ -75,5 +75,8 @@ public class WordService {
     public void updateWord(Word word) {
         wordDao.updateWord(word);
     }
-}
 
+    public List<Word> getWordsByGroupId(int groupId) {
+        return wordDao.findWordsByGroupId(groupId);
+    }
+}
