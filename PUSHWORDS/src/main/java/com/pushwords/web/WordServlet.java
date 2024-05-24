@@ -8,6 +8,7 @@ import com.pushwords.service.WordService;
 import com.pushwords.service.WordsApiService;
 import com.pushwords.util.Page;
 import com.pushwords.vo.ResultInfo;
+import org.json.JSONArray;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet("/word")
 public class WordServlet extends HttpServlet {
@@ -23,22 +25,21 @@ public class WordServlet extends HttpServlet {
     private WordService wordService = new WordService();
     private final WordsApiService wordsApiService = new WordsApiService();
 
-
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         String actionName = request.getParameter("actionName");
 
-        if("view".equals(actionName)){
+        if ("view".equals(actionName)) {
             wordView(request, response);
-        } else if ("addOrUpdate".equals(actionName)){
+        } else if ("addOrUpdate".equals(actionName)) {
             addOrUpdate(request, response);
-        } else if("showWords".equals(actionName)){
+        } else if ("showWords".equals(actionName)) {
             showWords(request, response);
-        } else if("deleteWord".equals(actionName)){
+        } else if ("deleteWord".equals(actionName)) {
             deleteWord(request, response);
-        } else if("updateWord".equals(actionName)){
+        } else if ("updateWord".equals(actionName)) {
             updateWord(request, response);
         } else if ("translate".equals(actionName)) {
             translateWord(request, response);
@@ -60,7 +61,7 @@ public class WordServlet extends HttpServlet {
         String title = request.getParameter("title");
         String content = request.getParameter("content");
         ResultInfo<Word> resultInfo = wordService.addOrUpdate(groupId, title, content);
-        if(resultInfo.getCode() == 1){
+        if (resultInfo.getCode() == 1) {
             response.sendRedirect("word?actionName=showWords&groupId=" + groupId);
         } else {
             request.setAttribute("resultInfo", resultInfo);
@@ -99,14 +100,13 @@ public class WordServlet extends HttpServlet {
         String word = request.getParameter("word");
 
         try {
-            List<String> translations = wordsApiService.translateWord(word);
-            request.setAttribute("translations", translations);
+            List<Map<String, String>> definitions = wordsApiService.translateWord(word);
+            JSONArray jsonArray = new JSONArray(definitions);
             response.setContentType("application/json");
-            response.getWriter().write(new org.json.JSONObject().put("translations", translations).toString());
+            response.getWriter().write(jsonArray.toString());
         } catch (Exception e) {
             e.printStackTrace();
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Translation failed.");
         }
     }
-
 }

@@ -11,7 +11,6 @@
     <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-
     <style>
         body, html {
             height: 100%;
@@ -139,7 +138,6 @@
         }
     </style>
 </head>
-</head>
 <body>
 <div class="icons-container">
     <div class="icon-wrapper">
@@ -156,7 +154,7 @@
     </div>
 
     <div class="icon-wrapper">
-        <a href="../user?actionName=logout"><ion-icon class="custom-icon" name="exit-outline"></ion-icon></a>
+        <a href="${pageContext.request.contextPath}/user?actionName=logout"><ion-icon class="custom-icon" name="exit-outline"></ion-icon></a>
     </div>
 </div>
 
@@ -185,8 +183,8 @@
                     <input type="text" id="title" name="title" placeholder="Enter the word" value="${resultInfo.result.title}">
                     <button type="button" onclick="translateWord()">Translate</button>
                     <br><br>
-                    <label for="definitions">Select a Definition:</label>
-                    <select id="definitions">
+                    <label for="definition">Select a Definition:</label>
+                    <select id="definition" name="definition" onchange="copyToDescription()">
                         <option>Select a definition</option>
                     </select>
                     <br><br>
@@ -230,34 +228,28 @@
                     word: title
                 },
                 success: function (data) {
-                    console.log("Translation result: " + data.translations);
-                    var definitions = data.translations;
-                    var definitionsSelect = $("#definitions");
-                    definitionsSelect.empty();
-                    for (var i = 0; i < definitions.length; i++) {
-                        definitionsSelect.append('<option>' + definitions[i] + '</option>');
-                    }
-                    definitionsSelect[0].selectedIndex = 0;
-                    $("#msg").html("Translation successful.");
+                    console.log("Translation result: " + data);
+                    $("#definition").empty();
+                    data.forEach(function (item) {
+                        $("#definition").append(new Option(item.definition, item.definition));
+                    });
+                    $("#definition").prop("selectedIndex", 1); // Select the first definition
+                    $("#msg").html("Translation successful.").css("color", "green");
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.error("Translation error: " + textStatus + " - " + errorThrown);
-                    $("#msg").html("Translation failed. Please try again.");
+                    $("#msg").html("Translation failed. Please try again.").css("color", "red");
                 }
             });
         }
 
-        $(document).ready(function () {
-            $("#title").on("focus", function () {
-                $("#msg").html("");
-            });
+        function copyToDescription() {
+            var selectedDefinition = $("#definition").val();
+            $("#explication").val(selectedDefinition);
+        }
 
-            $("#definitions").on("change", function () {
-                var selectedDefinition = $(this).val();
-                if (selectedDefinition !== "Select a definition") {
-                    $("#explication").val(selectedDefinition);
-                }
-            });
+        $("#title").on("input", function () {
+            $("#msg").html("");
         });
     </script>
 </main>
