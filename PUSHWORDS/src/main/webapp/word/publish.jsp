@@ -152,7 +152,7 @@
         <a href="${pageContext.request.contextPath}/user/profile.jsp"><ion-icon class="custom-icon" name="person-circle-outline"></ion-icon></a>
     </div>
     <div class="icon-wrapper">
-        <a href="../user?actionName=logout"><ion-icon class="custom-icon" name="exit-outline"></ion-icon></a>
+        <a href="${pageContext.request.contextPath}/user?actionName=logout"><ion-icon class="custom-icon" name="exit-outline"></ion-icon></a>
     </div>
 </div>
 <div class="sidebar">
