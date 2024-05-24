@@ -26,8 +26,8 @@
 
         .icons-container {
             display: flex;
-            justify-content: space-around; /* Center icons horizontally */
-            align-items: center; /* Center icons vertically */
+            justify-content: space-between; /* Adjust spacing between elements */
+            align-items: center;
             background-color: #333;
             color: #fff;
             padding: 10px;
@@ -38,45 +38,37 @@
         }
 
         .custom-icon {
-            font-size: 60px; /* Increase icon size */
+            font-size: 40px; /* Increase icon size */
             color: white; /* Icon color */
         }
 
-        .sidebar {
-            background-color: #333;
-            color: #fff;
-            padding: 60px 20px; /* Add padding around sidebar links */
-            width: 200px; /* Adjust sidebar width */
-            height: calc(100vh - 60px); /* Adjust height excluding icon container */
-            position: fixed;
-            top: 60px; /* Match the height of icons container */
-            left: 0;
-            box-sizing: border-box;
+        .icon-wrapper{
+            margin: 0 150px;
         }
 
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            font-size: 18px; /* Increase font size for better visibility */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px; /* Space between links */
         }
 
-        .sidebar li {
-            margin-bottom: 15px; /* Add margin between each link */
-        }
-
-        .sidebar li a {
+        .nav-links a {
             color: white;
             text-decoration: none;
+            font-size: 18px; /* Increase font size for better visibility */
+            padding: 10px 15px;
         }
 
-        .sidebar li a:hover {
+        .nav-links a:hover {
             background-color: #555;
         }
 
+        .nav-links .current {
+            background-color: green;
+        }
+
         .main-content {
-            margin-left: 220px; /* Leave space for sidebar */
-            width: calc(100% - 220px); /* Adjusted for new sidebar width */
+            margin-top: 60px;
             padding: 30px;
             display: flex;
             flex-direction: column;
@@ -84,12 +76,8 @@
             justify-content: center;
             background-color: #e8e8e8;
             box-sizing: border-box;
-            min-height: 100vh;
+            min-height: calc(100vh - 60px); /* Adjusted for new margin top */
             overflow-y: auto;
-        }
-
-        .form-group {
-            margin-bottom: 20px; /* Adjust form field spacing */
         }
 
         label {
@@ -122,6 +110,7 @@
         input[type="submit"]:hover {
             background-color: #003875;
         }
+
     </style>
 
 </head>
@@ -131,25 +120,21 @@
     <div class="icon-wrapper">
         <a href="user/profile.jsp"><ion-icon class="custom-icon" name="person-circle-outline"></ion-icon></a>
     </div>
+    <div class="nav-links">
+        <a class="current" href="index.jsp">Accueil</a>
+        <a href="word?actionName=view">Publier</a>
+        <a href="group?actionName=list">Gestion des Catégories</a>
+        <a href="mem?actionName=list">Memoriser</a>
+        <a href="report?actionName=showReports">Rapports de Données</a>
+    </div>
     <div class="icon-wrapper">
         <a href="user?actionName=logout"><ion-icon class="custom-icon" name="exit-outline"></ion-icon></a>
     </div>
 </div>
 
-<div class="sidebar">
-    <ul>
-        <li class="current"><a href="index.jsp">Accueil</a></li>
-        <li><a href="word?actionName=view">Publier</a></li>
-        <li><a href="group?actionName=list">Gestion des Catégories</a></li>
-        <li><a href="mem?actionName=list">Memoriser</a></li>
-        <li><a href="report?actionName=showReports">Rapports de Données</a></li>
-    </ul>
-</div>
-
 <main class="main-content">
     <h1>---------PUSHWORD----------</h1>
     <h2>Magical tool for the words</h2>
-    <!-- 主内容 -->
 </main>
 </body>
 </html>

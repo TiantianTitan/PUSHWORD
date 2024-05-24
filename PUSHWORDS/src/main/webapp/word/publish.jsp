@@ -30,8 +30,8 @@
 
         .icons-container {
             display: flex;
-            justify-content: space-around; /* Center icons horizontally */
-            align-items: center; /* Center icons vertically */
+            justify-content: space-between; /* Adjust spacing between elements */
+            align-items: center;
             background-color: #333;
             color: #fff;
             padding: 10px;
@@ -42,45 +42,37 @@
         }
 
         .custom-icon {
-            font-size: 60px; /* Increase icon size */
+            font-size: 40px; /* Increase icon size */
             color: white; /* Icon color */
         }
 
-        .sidebar {
-            background-color: #333;
-            color: #fff;
-            padding: 60px 20px; /* Add padding around sidebar links */
-            width: 200px; /* Adjust sidebar width */
-            height: calc(100vh - 60px); /* Adjust height excluding icon container */
-            position: fixed;
-            top: 60px; /* Match the height of icons container */
-            left: 0;
-            box-sizing: border-box;
+        .icon-wrapper{
+            margin: 0 150px;
         }
 
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            font-size: 18px; /* Increase font size for better visibility */
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px; /* Space between links */
         }
 
-        .sidebar li {
-            margin-bottom: 15px; /* Add margin between each link */
-        }
-
-        .sidebar li a {
+        .nav-links a {
             color: white;
             text-decoration: none;
+            font-size: 18px; /* Increase font size for better visibility */
+            padding: 10px 15px;
         }
 
-        .sidebar li a:hover {
+        .nav-links a:hover {
             background-color: #555;
         }
 
+        .nav-links .current {
+            background-color: green;
+        }
+
         .main-content {
-            margin-left: 220px; /* Leave space for sidebar */
-            width: calc(100% - 220px); /* Adjusted for new sidebar width */
+            margin-top: 60px;
             padding: 30px;
             display: flex;
             flex-direction: column;
@@ -88,7 +80,7 @@
             justify-content: center;
             background-color: #e8e8e8;
             box-sizing: border-box;
-            min-height: 100vh;
+            min-height: calc(100vh - 60px); /* Adjusted for new margin top */
             overflow-y: auto;
         }
 
@@ -153,19 +145,21 @@
     <div class="icon-wrapper">
         <a href="${pageContext.request.contextPath}/user/profile.jsp"><ion-icon class="custom-icon" name="person-circle-outline"></ion-icon></a>
     </div>
+
+    <div class="nav-links">
+        <a href="${pageContext.request.contextPath}/index.jsp">Accueil</a>
+        <a class="current" href="${pageContext.request.contextPath}/word?actionName=view">Publier</a>
+        <a href="${pageContext.request.contextPath}/group?actionName=list">Gestion des Catégories</a>
+        <a href="${pageContext.request.contextPath}/mem?actionName=list">Memoriser</a>
+        <a href="${pageContext.request.contextPath}/report?actionName=showReports">Rapports de Données</a>
+
+    </div>
+
     <div class="icon-wrapper">
         <a href="../user?actionName=logout"><ion-icon class="custom-icon" name="exit-outline"></ion-icon></a>
     </div>
 </div>
-<div class="sidebar">
-    <ul>
-        <li><a href="${pageContext.request.contextPath}/index.jsp">Accueil</a></li>
-        <li class="current"><a href="${pageContext.request.contextPath}/word?actionName=view">Publier</a></li>
-        <li><a href="${pageContext.request.contextPath}/group?actionName=list">Gestion des Catégories</a></li>
-        <li><a href="${pageContext.request.contextPath}/mem?actionName=list">Memoriser</a></li>
-        <li><a href="${pageContext.request.contextPath}/report?actionName=showReports">Rapports de Données</a></li>
-    </ul>
-</div>
+
 <main class="main-content">
     <!-- La zone de contenu principal -->
     <div class="container">
