@@ -143,8 +143,13 @@
 
 <main class="main-content">
     <h1>Liste des mots pour le groupe</h1>
-    <button class="button" onclick="window.location.href='${pageContext.request.contextPath}/mem?actionName=list'">Retour à Memoriser</button>
-    <button class="button" onclick="window.location.href='${pageContext.request.contextPath}/study?actionName=startStudy&groupId=${param.groupId}'">Étudier</button>
+    <div>
+        <button class="button" onclick="window.location.href='${pageContext.request.contextPath}/mem?actionName=list'">Retour à Memoriser</button>
+        <button class="button" onclick="window.location.href='${pageContext.request.contextPath}/study?actionName=startStudy&groupId=${param.groupId}'">Étudier</button>
+        <button class="button" onclick="window.location.href='${pageContext.request.contextPath}/word?actionName=view'">Ajouter un nouveau mot</button>
+
+    </div>
+
     <c:if test="${empty page.dataList}">
         <h2>No data found for groupId ${param.groupId}</h2>
     </c:if>

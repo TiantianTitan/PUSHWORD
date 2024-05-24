@@ -14,10 +14,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * WordsApiService provides methods to interact with the WordsAPI to get word definitions.
+ */
 public class WordsApiService {
     private static final String API_URL = "https://wordsapiv1.p.rapidapi.com/words/";
     private static final String API_KEY = "4eca314a24msh01ca7c7cc4be4e7p143556jsn5318d093a358";
 
+    /**
+     * Translates a word by fetching its definitions from the WordsAPI.
+     *
+     * @param word the word to be translated
+     * @return a list of maps containing the definitions of the word
+     * @throws IOException if there is an error while making the API request
+     */
     public List<Map<String, String>> translateWord(String word) throws IOException {
         CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpGet request = new HttpGet(API_URL + word + "/definitions");
@@ -35,6 +45,12 @@ public class WordsApiService {
         }
     }
 
+    /**
+     * Extracts definitions from the JSON response.
+     *
+     * @param jsonString the JSON response as a string
+     * @return a list of maps containing the definitions
+     */
     private List<Map<String, String>> extractDefinitions(String jsonString) {
         List<Map<String, String>> definitions = new ArrayList<>();
         JSONObject json = new JSONObject(jsonString);

@@ -13,10 +13,21 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * StudyServlet handles study-related requests, such as starting a study session and saving test results.
+ */
 @WebServlet("/study")
 public class StudyServlet extends HttpServlet {
     private final WordService wordService = new WordService();
 
+    /**
+     * Handles HTTP requests to the /study URL.
+     *
+     * @param request  the HttpServletRequest object that contains the request the client made to the servlet
+     * @param response the HttpServletResponse object that contains the response the servlet returns to the client
+     * @throws ServletException if the request could not be handled
+     * @throws IOException      if an input or output error is detected when the servlet handles the request
+     */
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String actionName = request.getParameter("actionName");
@@ -27,6 +38,14 @@ public class StudyServlet extends HttpServlet {
         }
     }
 
+    /**
+     * Starts a study session by shuffling the words of a specified group and forwarding them to the study page.
+     *
+     * @param request  the HttpServletRequest object that contains the request the client made to the servlet
+     * @param response the HttpServletResponse object that contains the response the servlet returns to the client
+     * @throws ServletException if the request could not be handled
+     * @throws IOException      if an input or output error is detected when the servlet handles the request
+     */
     private void startStudy(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String groupId = request.getParameter("groupId");
         List<Word> words = wordService.getWordsByGroupId(Integer.parseInt(groupId));
@@ -35,6 +54,13 @@ public class StudyServlet extends HttpServlet {
         request.getRequestDispatcher("/study.jsp").forward(request, response);
     }
 
+    /**
+     * Saves the test result for the user.
+     *
+     * @param request  the HttpServletRequest object that contains the request the client made to the servlet
+     * @param response the HttpServletResponse object that contains the response the servlet returns to the client
+     * @throws IOException if an input or output error is detected when the servlet handles the request
+     */
     private void saveResult(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String userIdParam = request.getParameter("userId");
         String groupIdParam = request.getParameter("groupId");
@@ -42,7 +68,6 @@ public class StudyServlet extends HttpServlet {
         String correctAnswersParam = request.getParameter("correctAnswers");
         String accuracyParam = request.getParameter("accuracy");
         String timeTakenParam = request.getParameter("timeTaken");
-
 
         System.out.println("Received parameters:");
         System.out.println("userId: " + userIdParam);
@@ -87,5 +112,4 @@ public class StudyServlet extends HttpServlet {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Foreign key constraint violation");
         }
     }
-
 }

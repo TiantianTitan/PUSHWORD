@@ -11,11 +11,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * SignupServlet handles user registration requests.
+ */
 @WebServlet("/signup")
 public class SignupServlet extends HttpServlet {
 
     private final SignupService signupService = new SignupService();
 
+    /**
+     * Handles HTTP requests to the /signup URL.
+     *
+     * @param request  the HttpServletRequest object that contains the request the client made to the servlet
+     * @param response the HttpServletResponse object that contains the response the servlet returns to the client
+     * @throws ServletException if the request could not be handled
+     * @throws IOException      if an input or output error is detected when the servlet handles the request
+     */
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String actionName = request.getParameter("actionName");
@@ -24,6 +35,14 @@ public class SignupServlet extends HttpServlet {
         }
     }
 
+    /**
+     * Registers a new user with the provided username and password.
+     *
+     * @param request  the HttpServletRequest object that contains the request the client made to the servlet
+     * @param response the HttpServletResponse object that contains the response the servlet returns to the client
+     * @throws ServletException if the request could not be handled
+     * @throws IOException      if an input or output error is detected when the servlet handles the request
+     */
     private void registerUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userName = request.getParameter("userName");
         String userPwd = request.getParameter("userPwd");

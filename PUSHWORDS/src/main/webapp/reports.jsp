@@ -159,8 +159,6 @@
 
 <main class="main-content">
     <h1>Test Reports</h1>
-    <button class="button" onclick="window.location.href='${pageContext.request.contextPath}/mem?actionName=list'">Retour à Memoriser</button>
-
     <c:choose>
         <c:when test="${empty testResults}">
             <h2>No test records found.</h2>
