@@ -6,6 +6,7 @@ import com.pushwords.util.DBUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +43,13 @@ public class TestResultDao {
         params.add(userId);
 
         List<TestResult> results = (List<TestResult>) BaseDao.queryRows(sql, params, TestResult.class);
+
+        // 格式化 testDate
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        for (TestResult result : results) {
+            result.setOriginalTestDate(sdf.format(result.getTestDate()));
+        }
+
         return results;
     }
 
