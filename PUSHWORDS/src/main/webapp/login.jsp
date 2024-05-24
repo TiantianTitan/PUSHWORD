@@ -145,7 +145,19 @@
             transform: translate(-20%,-50%);
             width: 800px;
             height: 800px;
+        }
 
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .fade {
+            animation: fadeIn 1s ease-in-out;
         }
 
     </style>
@@ -173,13 +185,13 @@
 
     <div id="about" class="content-section content-box" style="display:none; margin-left: 500px">
 
-        <img src="./statics/images/SB.png" width="30%"/>
+        <img src="./statics/images/SB.png" width="30%" alt="Sorbonne-logo"/>
 
     </div>
 
     <div id="contact" class="content-section content-box" style="display:none; margin-left: 500px">
 
-        <img src="./statics/images/SB.png" width="30%"/>
+        <img src="./statics/images/SB.png" width="30%" alt="Sorbonne-logo"/>
 
     </div>
 </div>
@@ -284,11 +296,16 @@
         let sections = document.querySelectorAll('.content-section');
         sections.forEach(section => {
             if (section.id === sectionId) {
+                section.classList.add('fade');
                 section.style.display = 'block';
             } else {
                 section.style.display = 'none';
+                section.classList.remove('fade');
             }
         });
+        let loginContainer = document.querySelector('.login-container');
+        loginContainer.classList.add('fade');
+
         if (sectionId === 'home') {
             resetTimer();
         } else {
