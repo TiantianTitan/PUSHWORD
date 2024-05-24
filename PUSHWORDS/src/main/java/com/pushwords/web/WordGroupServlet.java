@@ -29,12 +29,12 @@ public class WordGroupServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         String actionName = request.getParameter("actionName");
-        if("list".equals(actionName)){
-            groupList(request,response);
+        if ("list".equals(actionName)) {
+            groupList(request, response);
         } else if ("delete".equals(actionName)) {
-            deleteGroup(request,response);
-        } else if ("addOrUpdate".equals(actionName)){
-            addOrUpdateGroup(request,response);
+            deleteGroup(request, response);
+        } else if ("addOrUpdate".equals(actionName)) {
+            addOrUpdateGroup(request, response);
         }
     }
 
@@ -45,25 +45,21 @@ public class WordGroupServlet extends HttpServlet {
 
         User user = (User) request.getSession().getAttribute("user");
 
-        ResultInfo<Integer> resultInfo = groupService.addOrUpdateGroup(groupName,user.getUserId(),groupId,groupDescription);
-        JsonUtil.toJson(response,resultInfo);
-
+        ResultInfo<Integer> resultInfo = groupService.addOrUpdateGroup(groupName, user.getUserId(), groupId, groupDescription);
+        JsonUtil.toJson(response, resultInfo);
     }
 
     private void deleteGroup(HttpServletRequest request, HttpServletResponse response) {
-
         String groupId = request.getParameter("groupId");
         ResultInfo<WordGroup> resultInfo = groupService.deleteGroup(groupId);
-        JsonUtil.toJson(response,resultInfo);
+        JsonUtil.toJson(response, resultInfo);
     }
 
     private void groupList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User user =  (User) request.getSession().getAttribute("user");
+        User user = (User) request.getSession().getAttribute("user");
 
         List<WordGroup> groupList = groupService.findGroupList(user.getUserId());
-        request.setAttribute("groupList",groupList);
-//       request.setAttribute("changePage","group/group.jsp");
-        request.getRequestDispatcher("/group/group.jsp").forward(request,response);
-
+        request.setAttribute("groupList", groupList);
+        request.getRequestDispatcher("/group/group.jsp").forward(request, response);
     }
 }
