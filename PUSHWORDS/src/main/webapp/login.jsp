@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false"%>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,10 +13,14 @@
             font-family: Arial, sans-serif;
             background-color: moccasin;
             display: flex;
-            justify-content: flex-end;
+            justify-content: flex-start;
             align-items: center;
             height: 100vh;
-            padding-right: 10%;
+        }
+        .content-container {
+            flex-grow: 1;
+            padding-left: 20px;
+            margin-left: 260px; /* Adjust the margin to make space for the sidebar */
         }
         .login-container {
             background-color: white;
@@ -25,8 +28,10 @@
             border-radius: 10px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             width: 300px;
+            position: absolute;
+            right: 20px;
         }
-        input[type="text"], input[type="password"], input[type="button"], input[type="submit"] {
+        input[type="text"], input[type="password"], input[type="button"] {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
@@ -34,25 +39,24 @@
             border-radius: 5px;
             box-sizing: border-box;
         }
-        input[type="button"], input[type="submit"] {
+        input[type="button"] {
             background-color: #007bff;
             color: white;
             cursor: pointer;
         }
-        input[type="button"]:hover, input[type="submit"]:hover {
+        input[type="button"]:hover {
             background-color: #0056b3;
         }
         .sidebar {
             height: 100%;
-            width: 0; /* Sidebar initially hidden */
+            width: 250px;
             position: fixed;
             z-index: 1;
             top: 0;
             left: 0;
             background-color: #111;
             overflow-x: hidden;
-            transition: width 0.5s ease; /* Smooth width transition */
-            padding-top: 60px; /* Space for the toggle button */
+            padding-top: 60px;
         }
         .sidebar a {
             padding: 10px 15px;
@@ -60,108 +64,86 @@
             font-size: 25px;
             color: #818181;
             display: block;
-            transition: color 0.3s;
         }
         .sidebar a:hover {
             color: #f1f1f1;
         }
-        .toggle-btn {
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 2;
-            background-color: #111;
-            color: white;
-            border: none;
-            cursor: pointer;
-            padding: 10px 15px;
-            font-size: 20px;
-            transition: left 0.5s ease; /* Smooth left transition */
-        }
-
         .password-container {
             position: relative;
             display: flex;
             align-items: center;
         }
-
         input[type="password"] {
             flex-grow: 1;
-            border-radius: 5px 0 0 5px; /* Rounded corners on the left side */
+            border-radius: 5px 0 0 5px;
             margin-bottom: 10px;
         }
-
         #togglePasswordBtn {
             position: absolute;
             right: 10px;
             color: #007bff;
             cursor: pointer;
         }
-
-        /* 你原有的CSS... */
-
         .slider-container {
             overflow: hidden;
-            max-width: 600px; /* 确保这个宽度适合你的设计 */
+            max-width: 600px;
             margin: 20px auto;
             position: relative;
         }
-
         .slider {
             display: flex;
-            transition: transform 0.5s ease; /* 平滑过渡效果 */
+            transition: transform 0.5s ease;
         }
-
         .slider img {
             width: 100%;
             flex-shrink: 0;
             display: inline-block;
         }
-
         .btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
             z-index: 100;
-            background-color: rgba(255, 255, 255, 0.5); /* 透明按钮 */
+            background-color: rgba(255, 255, 255, 0.5);
             border: none;
             cursor: pointer;
         }
-
         .prev {
             left: 0;
         }
-
         .next {
             right: 0;
         }
     </style>
 </head>
 <body>
-<button class="toggle-btn" onclick="toggleSidebar()">Menu</button>
 
 <div id="sidebar" class="sidebar">
-    <a href="">Home</a>
-    <a href="">Services</a>
-    <a href="">About</a>
-    <a href="">Contact</a>
-    <a href="">More</a>
+    <a href="javascript:void(0)" onclick="showSection('home')">Home</a>
+    <a href="javascript:void(0)" onclick="showSection('about')">About</a>
+    <a href="javascript:void(0)" onclick="showSection('contact')">Contact</a>
 </div>
 
-<!-- 你原有的代码... -->
-
-<div class="slider-container">
-    <div class="slider">
-        <img src="./statics/images/logo.png" alt="Image 1">
-        <img src="./statics/images/words.jpg" alt="Image 2">
-
-        <!-- 添加更多图片 -->
+<div class="content-container">
+    <div id="home" class="content-section">
+        <div class="slider-container">
+            <div class="slider">
+                <img src="./statics/images/logo.png" alt="Image 1">
+                <img src="./statics/images/words.jpg" alt="Image 2">
+            </div>
+            <button class="btn prev">&#10094;</button>
+            <button class="btn next">&#10095;</button>
+        </div>
     </div>
-    <button class="btn prev">&#10094;</button>
-    <button class="btn next">&#10095;</button>
+    <div id="about" class="content-section" style="display:none;">
+        <h1>About</h1>
+        <p>About us content goes here.</p>
+    </div>
+    <div id="contact" class="content-section" style="display:none;">
+        <h1>Contact</h1>
+        <p>Contact us content goes here.</p>
+    </div>
 </div>
-
-<!-- 你原有的JavaScript位置之前... -->
 
 <div class="login-container">
     <img style="text-align: center; width: 100%" src="./statics/images/logo.png" alt="logoPushWords">
@@ -193,6 +175,7 @@
         <input type="submit" value="Sign Up">
     </form>
 </div>
+
 <script>
     function toggleSidebar() {
         let sidebar = document.getElementById("sidebar");
@@ -202,7 +185,7 @@
             btn.style.left = "0px";
         } else {
             sidebar.style.width = "250px";
-            btn.style.left = "250px"; // Move button right along with the sidebar
+            btn.style.left = "250px";
         }
     }
 
@@ -256,6 +239,25 @@
     // Initialize the slider position and start the automatic slideshow
     updateSliderPosition();
     resetTimer();
+
+    function showSection(sectionId) {
+        let sections = document.querySelectorAll('.content-section');
+        sections.forEach(section => {
+            if (section.id === sectionId) {
+                section.style.display = 'block';
+            } else {
+                section.style.display = 'none';
+            }
+        });
+        if (sectionId === 'home') {
+            resetTimer();
+        } else {
+            clearInterval(timer);
+        }
+    }
+
+    // Show the home section by default
+    showSection('home');
 </script>
 </body>
 </html>
