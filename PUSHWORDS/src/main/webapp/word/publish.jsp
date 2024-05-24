@@ -181,8 +181,11 @@
                 <div class="form-group">
                     <label for="title">Title:</label>
                     <input type="text" id="title" name="title" placeholder="Enter the word" value="${resultInfo.result.title}">
-                    <button type="button" onclick="translateWord()">Translate</button>
-                    <br><br>
+                    <div style="margin-top: 20px;">
+                        <button type="button" onclick="translateWord()">Translate</button>
+                    </div>
+                    <br>
+                    <br>
                     <label for="definition">Select a Definition:</label>
                     <select id="definition" name="definition" onchange="copyToDescription()">
                         <option>Select a definition</option>
@@ -190,8 +193,10 @@
                     <br><br>
                     <label>Explication:</label>
                     <input type="text" id="explication" name="content" placeholder="Enter the description" value="${resultInfo.result.content}">
+                    <div style="margin-top: 20px;">
                     <button type="submit" onclick="return checkForm()">Save</button>
                     &nbsp;<span id="msg" style="font-size: 12px; color:red"></span>
+                    </div>
                 </div>
             </form>
         </c:if>
@@ -203,7 +208,7 @@
             var explication = $("#explication").val();
 
             if (title.trim() === "") {
-                $("#msg").html("Enter the word!");
+                $("#msg").html("<br>Enter the word!");
                 return false;
             }
 
@@ -216,7 +221,7 @@
         function translateWord() {
             var title = $("#title").val().trim();
             if (title === "") {
-                $("#msg").html("Enter the word to translate!");
+                $("#msg").html("<br>Enter the word to translate!");
                 return;
             }
 
@@ -238,7 +243,7 @@
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.error("Translation error: " + textStatus + " - " + errorThrown);
-                    $("#msg").html("Translation failed. Please try again.").css("color", "red");
+                    $("#msg").html("<br>Translation failed. Please try again.").css("color", "red");
                 }
             });
         }
