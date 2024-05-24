@@ -76,7 +76,7 @@
             justify-content: center;
             background-color: #e8e8e8;
             box-sizing: border-box;
-            min-height: calc(100vh - 60px); /* Adjusted for new margin top */
+            min-height: calc(100vh - 60px);
             overflow-y: auto;
         }
 
@@ -111,6 +111,22 @@
             background-color: #003875;
         }
 
+        .word-container {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .keyboard {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 600px;
+        }
+        .keyboard button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
     </style>
 
 </head>
@@ -133,8 +149,51 @@
 </div>
 
 <main class="main-content">
-    <h1>---------PUSHWORD----------</h1>
-    <h2>Magical tool for the words</h2>
+    <h1>Testez vos compétences en français</h1>
+    <div class="word-container" id="word-container"></div>
+    <div class="keyboard" id="keyboard"></div>
+    <div id="message"></div>
 </main>
+
+<script>
+    const words = ["bonjour", "ordinateur", "voiture", "maison", "éducation", "Sorbonne"];
+    const maxMistakes = 3;
+    let selectedWord, hiddenWord, mistakes;
+
+    function startGame() {
+        selectedWord = words[Math.floor(Math.random() * words.length)];
+        hiddenWord = selectedWord.split('').map(letter => Math.random() < 0.5 ? '_' : letter).join('');
+        mistakes = 0;
+        document.getElementById('word-container').innerText = hiddenWord;
+        document.getElementById('message').innerText = '';
+        document.getElementById('keyboard').innerHTML = '';
+        'abcdefghijklmnopqrstuvwxyzéèêëàâäôöûüîïç'.split('').forEach(letter => {
+            const button = document.createElement('button');
+            button.innerText = letter;
+            button.onclick = () => guessLetter(letter);
+            document.getElementById('keyboard').appendChild(button);
+        });
+    }
+
+    function guessLetter(letter) {
+        if (selectedWord.includes(letter)) {
+            hiddenWord = selectedWord.split('').map((l, i) => hiddenWord[i] === '_' && l === letter ? l : hiddenWord[i]).join('');
+            document.getElementById('word-container').innerText = hiddenWord;
+            if (hiddenWord === selectedWord) {
+                document.getElementById('message').innerText = 'Félicitations ! Vous avez gagné !';
+                setTimeout(startGame, 2000);
+            }
+        } else {
+            mistakes++;
+            if (mistakes >= maxMistakes) {
+                document.getElementById('message').innerText = 'Désolé, vous avez perdu. Le mot était : ' + selectedWord;
+                setTimeout(startGame, 2000);
+            }
+        }
+    }
+
+    startGame();
+</script>
+
 </body>
 </html>

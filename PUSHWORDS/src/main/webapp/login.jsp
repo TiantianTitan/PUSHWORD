@@ -16,11 +16,11 @@
             justify-content: flex-start;
             align-items: center;
             height: 100vh;
+            overflow: hidden;
         }
         .content-container {
             flex-grow: 1;
-            padding-left: 20px;
-            margin-left: 260px; /* Adjust the margin to make space for the sidebar */
+            margin-right: 200px;
         }
         .login-container {
             background-color: white;
@@ -49,7 +49,7 @@
         }
         .sidebar {
             height: 100%;
-            width: 250px;
+            width: 150px;
             position: fixed;
             z-index: 1;
             top: 0;
@@ -86,9 +86,11 @@
         }
         .slider-container {
             overflow: hidden;
-            max-width: 600px;
+            max-width: 800px;
+            max-height: 800px;
             margin: 20px auto;
             position: relative;
+            width: 100%;
         }
         .slider {
             display: flex;
@@ -98,6 +100,8 @@
             width: 100%;
             flex-shrink: 0;
             display: inline-block;
+            height: auto;
+            object-fit: contain;
         }
         .btn {
             position: absolute;
@@ -114,6 +118,36 @@
         .next {
             right: 0;
         }
+
+        .button-style {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        .button-style:hover {
+            background-color: #0056b3;
+        }
+
+        .content-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: absolute;
+            top: 50%;
+            transform: translate(-20%,-50%);
+            width: 800px;
+            height: 800px;
+
+        }
+
     </style>
 </head>
 <body>
@@ -130,18 +164,23 @@
             <div class="slider">
                 <img src="./statics/images/logo.png" alt="Image 1">
                 <img src="./statics/images/words.jpg" alt="Image 2">
+                <img src="./statics/images/SB.png" alt="Image 3">
             </div>
             <button class="btn prev">&#10094;</button>
             <button class="btn next">&#10095;</button>
         </div>
     </div>
-    <div id="about" class="content-section" style="display:none;">
-        <h1>About</h1>
-        <p>About us content goes here.</p>
+
+    <div id="about" class="content-section content-box" style="display:none; margin-left: 500px">
+
+        <img src="./statics/images/SB.png" width="30%"/>
+
     </div>
-    <div id="contact" class="content-section" style="display:none;">
-        <h1>Contact</h1>
-        <p>Contact us content goes here.</p>
+
+    <div id="contact" class="content-section content-box" style="display:none; margin-left: 500px">
+
+        <img src="./statics/images/SB.png" width="30%"/>
+
     </div>
 </div>
 
@@ -171,8 +210,9 @@
         <br/>
         <input type="button" value="Login" onclick="checkLogin()">
     </form>
+
     <form action="signup.jsp" method="get">
-        <input type="submit" value="Sign Up">
+        <input type="submit" value="Sign Up" class="button-style">
     </form>
 </div>
 
