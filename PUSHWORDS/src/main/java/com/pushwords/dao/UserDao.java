@@ -77,4 +77,13 @@ public class UserDao {
 
         return BaseDao.executeUpdate(sql,params);
     }
+
+    public int saveUser(User user) {
+        String sql = "insert into tb_user (uname, upwd) values (?, ?)";
+        List<Object> params = new ArrayList<>();
+        params.add(user.getUname());
+        params.add(user.getUpwd());
+        return BaseDao.executeUpdate(sql, params);
+    }
+
 }

@@ -5,7 +5,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Login Page</title>
-    <title>Login Page</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="statics/js/config.js?version=1.0" type="text/javascript"></script>
@@ -27,7 +26,7 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             width: 300px;
         }
-        input[type="text"], input[type="password"], input[type="button"] {
+        input[type="text"], input[type="password"], input[type="button"], input[type="submit"] {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
@@ -35,12 +34,12 @@
             border-radius: 5px;
             box-sizing: border-box;
         }
-        input[type="button"] {
+        input[type="button"], input[type="submit"] {
             background-color: #007bff;
             color: white;
             cursor: pointer;
         }
-        input[type="button"]:hover {
+        input[type="button"]:hover, input[type="submit"]:hover {
             background-color: #0056b3;
         }
         .sidebar {
@@ -113,7 +112,6 @@
             transition: transform 0.5s ease; /* 平滑过渡效果 */
         }
 
-
         .slider img {
             width: 100%;
             flex-shrink: 0;
@@ -137,132 +135,127 @@
         .next {
             right: 0;
         }
-
-
-
     </style>
 </head>
 <body>
-    <button class="toggle-btn" onclick="toggleSidebar()">Menu</button>
+<button class="toggle-btn" onclick="toggleSidebar()">Menu</button>
 
-    <div id="sidebar" class="sidebar">
-        <a href="">Home</a>
-        <a href="">Services</a>
-        <a href="">About</a>
-        <a href="">Contact</a>
-        <a href="">More</a>
+<div id="sidebar" class="sidebar">
+    <a href="">Home</a>
+    <a href="">Services</a>
+    <a href="">About</a>
+    <a href="">Contact</a>
+    <a href="">More</a>
+</div>
+
+<!-- 你原有的代码... -->
+
+<div class="slider-container">
+    <div class="slider">
+        <img src="./statics/images/logo.png" alt="Image 1">
+        <img src="./statics/images/words.jpg" alt="Image 2">
+
+        <!-- 添加更多图片 -->
     </div>
+    <button class="btn prev">&#10094;</button>
+    <button class="btn next">&#10095;</button>
+</div>
 
+<!-- 你原有的JavaScript位置之前... -->
 
-    <!-- 你原有的代码... -->
+<div class="login-container">
+    <img style="text-align: center; width: 100%" src="./statics/images/logo.png" alt="logoPushWords">
+    <form action="user" method="post" id="loginForm">
+        <input type="hidden" name="actionName" value="login"/>
+        <label for="userName">Username:</label>
+        <input type="text" id="userName" name="userName" value="${resultInfo.result.uname}" autocomplete="current-username">
+        <label for="userPwd">Password:</label>
 
-    <div class="slider-container">
-        <div class="slider">
-            <img src="./statics/images/logo.png" alt="Image 1">
-            <img src="./statics/images/words.jpg" alt="Image 2">
-
-            <!-- 添加更多图片 -->
+        <div class="password-container">
+            <input type="password" id="userPwd" name="userPwd" value="${resultInfo.result.upwd}" autocomplete="current-password">
+            <i id="togglePasswordBtn" class="fas fa-eye" onclick="togglePassword()"></i>
         </div>
-        <button class="btn prev">&#10094;</button>
-        <button class="btn next">&#10095;</button>
-    </div>
 
-    <!-- 你原有的JavaScript位置之前... -->
-
-
-
-
-    <div class="login-container">
-        <img style="text-align: center; width: 100%" src="./statics/images/logo.png" alt="logoPushWords">
-        <form action="user" method="post" id="loginForm">
-            <input type= "hidden" name="actionName" value="login"/>
-            <label for="userName">Username:</label>
-            <input type="text" id="userName" name="userName" value="${resultInfo.result.uname}" autocomplete="current-username">
-            <label for="userPwd">Password:</label>
-
-            <div class="password-container">
-                <input type="password" id="userPwd" name="userPwd" value="${resultInfo.result.upwd}" autocomplete="current-password">
-                <i id="togglePasswordBtn" class="fas fa-eye" onclick="togglePassword()"></i>
-            </div>
-
-            <div>
-                <label>
-                    <input name = "rem" type="checkbox" value="1" class="input checkbox"/>
-                </label>
-                <label>remember me</label>
-            </div>
-            <div>
-            <span id="msg" style="color: red;font-size: 12px" >${resultInfo.msg}</span>
-            </div>
-            <br/>
-            <br/>
-            <input type="button" value="Login" onclick="checkLogin()">
-        </form>
-    </div>
-    <script>
-        function toggleSidebar() {
-            let sidebar = document.getElementById("sidebar");
-            let btn = document.querySelector(".toggle-btn");
-            if (sidebar.style.width === "250px") {
-                sidebar.style.width = "0";
-                btn.style.left = "0px";
-            } else {
-                sidebar.style.width = "250px";
-                btn.style.left = "250px"; // Move button right along with the sidebar
-            }
+        <div>
+            <label>
+                <input name="rem" type="checkbox" value="1" class="input checkbox"/>
+            </label>
+            <label>remember me</label>
+        </div>
+        <div>
+            <span id="msg" style="color: red;font-size: 12px">${resultInfo.msg}</span>
+        </div>
+        <br/>
+        <br/>
+        <input type="button" value="Login" onclick="checkLogin()">
+    </form>
+    <form action="signup.jsp" method="get">
+        <input type="submit" value="Sign Up">
+    </form>
+</div>
+<script>
+    function toggleSidebar() {
+        let sidebar = document.getElementById("sidebar");
+        let btn = document.querySelector(".toggle-btn");
+        if (sidebar.style.width === "250px") {
+            sidebar.style.width = "0";
+            btn.style.left = "0px";
+        } else {
+            sidebar.style.width = "250px";
+            btn.style.left = "250px"; // Move button right along with the sidebar
         }
+    }
 
-        function togglePassword() {
-            let pwd = document.getElementById("userPwd");
-            let toggleBtn = document.getElementById("togglePasswordBtn");
-            if (pwd.type === "password") {
-                pwd.type = "text";
-                toggleBtn.classList.remove("fa-eye");
-                toggleBtn.classList.add("fa-eye-slash");
-            } else {
-                pwd.type = "password";
-                toggleBtn.classList.remove("fa-eye-slash");
-                toggleBtn.classList.add("fa-eye");
-            }
+    function togglePassword() {
+        let pwd = document.getElementById("userPwd");
+        let toggleBtn = document.getElementById("togglePasswordBtn");
+        if (pwd.type === "password") {
+            pwd.type = "text";
+            toggleBtn.classList.remove("fa-eye");
+            toggleBtn.classList.add("fa-eye-slash");
+        } else {
+            pwd.type = "password";
+            toggleBtn.classList.remove("fa-eye-slash");
+            toggleBtn.classList.add("fa-eye");
         }
+    }
 
-        let sliderIndex = 0;
-        let slides = document.querySelectorAll('.slider img');
-        let slider = document.querySelector('.slider');
-        let containerWidth = document.querySelector('.slider-container').offsetWidth;
-        let timer;
+    let sliderIndex = 0;
+    let slides = document.querySelectorAll('.slider img');
+    let slider = document.querySelector('.slider');
+    let containerWidth = document.querySelector('.slider-container').offsetWidth;
+    let timer;
 
-        function updateSliderPosition() {
-            slider.style.transform = 'translateX(' + (-sliderIndex * containerWidth) + 'px)';
-        }
+    function updateSliderPosition() {
+        slider.style.transform = 'translateX(' + (-sliderIndex * containerWidth) + 'px)';
+    }
 
-        function nextSlide() {
+    function nextSlide() {
+        sliderIndex = (sliderIndex + 1) % slides.length;
+        updateSliderPosition();
+        resetTimer(); // Reset the timer whenever manually navigate
+    }
+
+    function prevSlide() {
+        sliderIndex = (sliderIndex - 1 + slides.length) % slides.length;
+        updateSliderPosition();
+        resetTimer(); // Reset the timer whenever manually navigate
+    }
+
+    function resetTimer() {
+        clearInterval(timer);
+        timer = setInterval(function() {
             sliderIndex = (sliderIndex + 1) % slides.length;
             updateSliderPosition();
-            resetTimer(); // Reset the timer whenever manually navigate
-        }
+        }, 5000); // Change slide every 5 seconds
+    }
 
-        function prevSlide() {
-            sliderIndex = (sliderIndex - 1 + slides.length) % slides.length;
-            updateSliderPosition();
-            resetTimer(); // Reset the timer whenever manually navigate
-        }
+    document.querySelector('.next').addEventListener('click', nextSlide);
+    document.querySelector('.prev').addEventListener('click', prevSlide);
 
-        function resetTimer() {
-            clearInterval(timer);
-            timer = setInterval(function() {
-                sliderIndex = (sliderIndex + 1) % slides.length;
-                updateSliderPosition();
-            }, 5000); // Change slide every 5 seconds
-        }
-
-        document.querySelector('.next').addEventListener('click', nextSlide);
-        document.querySelector('.prev').addEventListener('click', prevSlide);
-
-        // Initialize the slider position and start the automatic slideshow
-        updateSliderPosition();
-        resetTimer();
+    // Initialize the slider position and start the automatic slideshow
+    updateSliderPosition();
+    resetTimer();
 </script>
 </body>
-
 </html>
