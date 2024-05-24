@@ -78,7 +78,7 @@ public class StudyServlet extends HttpServlet {
 
             wordService.saveTestResult(testResult);
 
-            response.sendRedirect("reports.jsp");
+            response.sendRedirect("report?actionName=showReports");
         } catch (NumberFormatException e) {
             System.out.println("NumberFormatException: " + e.getMessage());
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid input format");
