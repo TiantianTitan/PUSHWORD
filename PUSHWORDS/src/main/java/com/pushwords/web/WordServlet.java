@@ -1,11 +1,11 @@
 package com.pushwords.web;
 
-import com.mysql.cj.protocol.Resultset;
 import com.pushwords.po.User;
 import com.pushwords.po.Word;
 import com.pushwords.po.WordGroup;
 import com.pushwords.service.WordGroupService;
 import com.pushwords.service.WordService;
+import com.pushwords.service.WordsApiService;
 import com.pushwords.util.Page;
 import com.pushwords.vo.ResultInfo;
 
@@ -16,10 +16,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+
 @WebServlet("/word")
 public class WordServlet extends HttpServlet {
 
     private WordService wordService = new WordService();
+    private final WordsApiService wordsApiService = new WordsApiService();
+
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,6 +40,8 @@ public class WordServlet extends HttpServlet {
             deleteWord(request, response);
         } else if("updateWord".equals(actionName)){
             updateWord(request, response);
+        } else if ("translate".equals(actionName)) {
+            translateWord(request, response);
         }
     }
 
@@ -89,5 +94,19 @@ public class WordServlet extends HttpServlet {
         request.setAttribute("groupList", groupList);
         request.getRequestDispatcher("word/publish.jsp").forward(request, response);
     }
-}
 
+    private void translateWord(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String word = request.getParameter("word");
+
+        try {
+            List<String> translations = wordsApiService.translateWord(word);
+            request.setAttribute("translations", translations);
+            response.setContentType("application/json");
+            response.getWriter().write(new org.json.JSONObject().put("translations", translations).toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Translation failed.");
+        }
+    }
+
+}

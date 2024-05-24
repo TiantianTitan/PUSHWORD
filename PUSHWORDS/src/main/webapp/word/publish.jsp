@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
-
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -11,6 +10,7 @@
     <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
     <style>
         body, html {
@@ -147,6 +147,7 @@
         }
     </style>
 </head>
+</head>
 <body>
 <div class="icons-container">
     <div class="icon-wrapper">
@@ -188,6 +189,12 @@
                 <div class="form-group">
                     <label for="title">Title:</label>
                     <input type="text" id="title" name="title" placeholder="Enter the word" value="${resultInfo.result.title}">
+                    <button type="button" onclick="translateWord()">Translate</button>
+                    <br><br>
+                    <label for="definitions">Select a Definition:</label>
+                    <select id="definitions">
+                        <option>Select a definition</option>
+                    </select>
                     <br><br>
                     <label>Explication:</label>
                     <input type="text" id="explication" name="content" placeholder="Enter the description" value="${resultInfo.result.content}">
@@ -213,8 +220,52 @@
                 return false;
             }
         }
-    </script>
 
+        function translateWord() {
+            var title = $("#title").val().trim();
+            if (title === "") {
+                $("#msg").html("Enter the word to translate!");
+                return;
+            }
+
+            $.ajax({
+                url: '${pageContext.request.contextPath}/word',
+                type: 'GET',
+                data: {
+                    actionName: 'translate',
+                    word: title
+                },
+                success: function (data) {
+                    console.log("Translation result: " + data.translations);
+                    var definitions = data.translations;
+                    var definitionsSelect = $("#definitions");
+                    definitionsSelect.empty();
+                    for (var i = 0; i < definitions.length; i++) {
+                        definitionsSelect.append('<option>' + definitions[i] + '</option>');
+                    }
+                    definitionsSelect[0].selectedIndex = 0;
+                    $("#msg").html("Translation successful.");
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error("Translation error: " + textStatus + " - " + errorThrown);
+                    $("#msg").html("Translation failed. Please try again.");
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            $("#title").on("focus", function () {
+                $("#msg").html("");
+            });
+
+            $("#definitions").on("change", function () {
+                var selectedDefinition = $(this).val();
+                if (selectedDefinition !== "Select a definition") {
+                    $("#explication").val(selectedDefinition);
+                }
+            });
+        });
+    </script>
 </main>
 
 </body>

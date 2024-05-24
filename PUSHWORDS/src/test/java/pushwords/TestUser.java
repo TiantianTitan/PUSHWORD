@@ -5,7 +5,6 @@ import com.pushwords.dao.UserDao;
 import com.pushwords.dao.WordGroupDao;
 import com.pushwords.po.User;
 import com.pushwords.po.WordGroup;
-import com.pushwords.service.WordGroupService;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 
@@ -15,6 +14,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 public class TestUser {
 
