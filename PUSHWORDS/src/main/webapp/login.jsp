@@ -142,7 +142,7 @@
         }
 
         .content-box {
-            background-color: white;
+            background-color: rgba(0,0,0,0);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -644,10 +644,42 @@
 
     <div id="about" class="content-section content-box" style="display:none; margin-left: 500px">
         <img src="./statics/images/SB.png" width="30%" alt="Sorbonne-logo"/>
+        <p style="color: rgb(248,246,231)">C'est le Projet du cours PC3R de la majeure STL à Sorbonne Université en 2024.</p>
+        <br>
+        <p style="color: rgb(248,246,231)">Ce projet est conçu pour aider à apprendre l'anglais.</p>
+        <br>
+        <p style="color: rgb(248,246,231)">Les utilisateurs peuvent créer leur propre compte ou se connecter dans le module de connexion
+            à droite. Les informations seront enregistrées dans la base de données.
+        </p>
+        <br>
+        <p style="color: rgb(248,246,231)">Les utilisateurs peuvent traduire et regrouper les mots anglais inconnus qu'ils rencontrent
+            et les stocker dans la base de données correspondante. Vous pouvez ensuite mémoriser des mots en regardant le contenu des
+            différents groupes. Habituellement, vérifier le contenu d'un groupe signifie que cette page Web affichera aléatoirement tous
+            les mots anglais du groupe et donnera 4 traductions françaises correspondantes à choisir par l'utilisateur.
+            Une fois que l'utilisateur a terminé tous les tests, il verra les résultats des tests (scores).
+        </p>
+        <br>
+        <p style="color: rgb(248,246,231)">De plus, sur la page Acceuil, nous avons mis en place un jeu simple de remplissage de mots pour
+            tester le niveau de vocabulaire anglais de l'utilisateur. (Mais en fait c'est plus pour s'amuser)
+        </p>
+        <br>
+        <p style="color: rgb(248,246,231)">Haotian XUE</p>
+        <p style="color: rgb(248,246,231)">Hejun CAO</p>
+        <p style="color: rgb(248,246,231)">25/05/2024</p>
     </div>
 
     <div id="contact" class="content-section content-box" style="display:none; margin-left: 500px">
         <img src="./statics/images/SB.png" width="30%" alt="Sorbonne-logo"/>
+        <br>
+        <br>
+        <br>
+        <img src="./statics/images/HAOTIAN.jpg" width="20%" alt="HAOTIAN"/>
+        <p style="color:rgb(248,246,231);">Haotian XUE</p>
+        <p style="color:rgb(248,246,231);">Address Email</p>
+        <br>
+        <img src="./statics/images/HEJUN.jpg" width="20%" alt="HEJUN"/>
+        <p style="color:rgb(248,246,231);">Hejun CAO</p>
+        <p style="color:rgb(248,246,231);">Hejun.Cao@etu.sorbonne-universite.fr</p>
     </div>
 </div>
 
