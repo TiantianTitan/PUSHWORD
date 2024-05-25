@@ -75,3 +75,99 @@ Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus d'informatio
 ---
 
 Merci d'utiliser notre plateforme de mémorisation de vocabulaire ! Nous espérons qu'elle vous aidera à améliorer vos compétences linguistiques.
+
+
+## Annexe
+Code pour créer les tables de database:
+
+-- Create the table
+CREATE TABLE tb_user (
+    userId INT AUTO_INCREMENT PRIMARY KEY,
+    uname VARCHAR(50),
+    upwd VARCHAR(50),
+    nick VARCHAR(50),
+    head VARCHAR(50),
+    mood VARCHAR(255)
+);
+
+-- Insert the data
+INSERT INTO tb_user (uname, upwd, nick, head, mood) VALUES
+('admin', 'root1234', 'adminhaha', '404.gif', "C'est pas mal"),
+('JaneDoe', 'abcd', 'Jane', 'JaneDoe.jpeg', 'Happy Happy Happy'),
+('root', 'root1234', 'root', 'zoe.jpeg', 'ByeBye'),
+('Zoe', 'abcd', 'LittleStar', 'zoe.jpeg', 'Bye Bye lady lazy'),
+('Zoe', 'abcd', 'LittleStar', '404.jpg', 'Hello world!');
+
+
+-- Create the table
+CREATE TABLE tb_group (
+    groupId INT AUTO_INCREMENT PRIMARY KEY,
+    groupName VARCHAR(50),
+    groupDescription VARCHAR(255),
+    groupUserId INT
+);
+
+-- Insert the data
+INSERT INTO tb_group (groupName, groupDescription, groupUserId) VALUES
+('Physique', 'The physical words', 2),
+('Physiques', 'The physical words', 1),
+('maths', 'the math words', 1),
+('Informatique', 'The informational words', 1);
+
+
+
+-- Create the table
+CREATE TABLE tb_test_result (
+    resultId INT AUTO_INCREMENT PRIMARY KEY,
+    userId INT,
+    groupId INT,
+    totalWords INT,
+    correctAnswers INT,
+    accuracy INT,
+    timeTaken INT,
+    testDate DATETIME
+);
+
+-- Insert the data
+INSERT INTO tb_test_result (userId, groupId, totalWords, correctAnswers, accuracy, timeTaken, testDate) VALUES
+(1, 4, 2, 2, 100, 2, '2024-05-24 18:21:00'),
+(1, 4, 2, 1, 50, 1, '2024-05-24 18:31:00'),
+(1, 2, 2, 0, 0, 0, '2024-05-24 18:39:00'),
+(5, 4, 2, 2, 100, 4, '2024-05-24 22:34:00'),
+(12, 23, 1, 1, 100, 1, '2024-05-24 22:43:00'),
+(12, 23, 1, 1, 100, 1, '2024-05-25 21:23:00');
+
+
+
+-- Create the table
+CREATE TABLE tb_word (
+    wordId INT AUTO_INCREMENT PRIMARY KEY,
+    groupId INT,
+    title VARCHAR(255),
+    content VARCHAR(255),
+    pubtime DATETIME
+);
+
+-- Insert the data
+INSERT INTO tb_word (groupId, title, content, pubtime) VALUES
+(3, 'héééééé', 'Hazazé', '2024-05-17 17:52:47'),
+(6, 'qsdq', 'qsd', '2024-05-17 17:56:04'),
+(4, 'qsdq', 'qfgg', '2024-05-17 17:56:08'),
+(3, 'Hello', 'Bonjour', '2024-05-21 13:16:27'),
+(3, 'speed', 'vitesse', '2024-05-21 17:37:12'),
+(3, 'test', 'test 2', '2024-05-21 17:37:54'),
+(3, 'Yes or ...', 'or', '2024-05-21 17:39:14'),
+(13, 'Hi', 'Hiii', '2024-05-21 18:35:27'),
+(3, 'testé', 'ééééé', '2024-05-21 19:46:44'),
+(3, '&(&"&(', '&"&', '2024-05-21 19:46:49'),
+(3, 'Second', 'second', '2024-05-21 19:46:53'),
+(3, 'GoGoGo', 'Allez Allez...', '2024-05-21 19:47:23'),
+(3, 'IF', 'SI', '2024-05-21 19:47:35'),
+(3, 'good lu...', 'bonne ch...', '2024-05-21 19:47:46'),
+(3, 'Patience', 'patience', '2024-05-21 19:52:57'),
+(3, 'Hey', 'hey', '2024-05-21 16:03:54'),
+(3, 'Good lu...', 'Good luck', '2024-05-21 16:04:04'),
+(3, 'Système', 'system', '2024-05-21 16:04:10'),
+(4, '1+1', 'end', '2024-05-24 14:48:46'),
+(3, 'the sta...', 'the state...', '2024-05-24 14:48:48'),
+(3, 'a state in ...', 'an expres...', '2024-05-24 14:48:58');
