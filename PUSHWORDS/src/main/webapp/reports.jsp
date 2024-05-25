@@ -121,9 +121,8 @@
 
         .table {
             width: 100%;
-            max-width: 800px;
-            margin-top: 20px;
             border-collapse: collapse;
+            margin: 20px 0;
         }
 
         .table th, .table td {
@@ -138,11 +137,11 @@
         }
 
         .table tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color: rgba(0,0,0,0);
         }
 
         .table tr:hover {
-            background-color: #ddd;
+            background-color: rgba(0,0,0,0);
         }
 
         .night {
@@ -628,23 +627,23 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th>Date</th>
-                    <th>Group</th>
-                    <th>Total Words</th>
-                    <th>Correct Answers</th>
-                    <th>Accuracy</th>
-                    <th>Time Taken (seconds)</th>
+                    <th style="color: rgb(248,246,231)">Date</th>
+                    <th style="color: rgb(248,246,231)" >Group</th>
+                    <th style="color: rgb(248,246,231)">Total Words</th>
+                    <th style="color: rgb(248,246,231)">Correct Answers</th>
+                    <th style="color: rgb(248,246,231)">Accuracy</th>
+                    <th style="color: rgb(248,246,231)">Time Taken (seconds)</th>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach items="${testResults}" var="result">
                     <tr>
-                        <td>${result.originalTestDate}</td>
-                        <td>${result.groupName}</td>
-                        <td>${result.totalWords}</td>
-                        <td>${result.correctAnswers}</td>
-                        <td>${result.accuracy}%</td>
-                        <td>${result.timeTaken}</td>
+                        <td style="color: rgb(248,246,231)">${result.originalTestDate}</td>
+                        <td style="color: rgb(248,246,231)">${result.groupName}</td>
+                        <td style="color: rgb(248,246,231)">${result.totalWords}</td>
+                        <td style="color: rgb(248,246,231)">${result.correctAnswers}</td>
+                        <td style="color: rgb(248,246,231)">${result.accuracy}%</td>
+                        <td style="color: rgb(248,246,231)">${result.timeTaken}</td>
                     </tr>
                 </c:forEach>
                 </tbody>

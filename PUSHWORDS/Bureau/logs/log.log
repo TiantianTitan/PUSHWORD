@@ -2824,3 +2824,87 @@
 2024-05-24 22:47:08 [ http-bio-8080-exec-4:411 ] - [ DEBUG ] Connection [id: 0][route: {s}->https://wordsapiv1.p.rapidapi.com:443] can be kept alive indefinitely
 2024-05-24 22:47:08 [ http-bio-8080-exec-4:411 ] - [ DEBUG ] http-outgoing-0: set socket timeout to 0
 2024-05-24 22:47:08 [ http-bio-8080-exec-4:411 ] - [ DEBUG ] Connection released: [id: 0][route: {s}->https://wordsapiv1.p.rapidapi.com:443][total available: 1; route allocated: 1 of 2; total allocated: 1 of 20]
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522098 ] - [ DEBUG ] CookieSpec selected: default
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522098 ] - [ DEBUG ] Auth cache not set in the context
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522099 ] - [ DEBUG ] Connection request: [route: {s}->https://wordsapiv1.p.rapidapi.com:443][total available: 0; route allocated: 0 of 2; total allocated: 0 of 20]
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522099 ] - [ DEBUG ] Connection leased: [id: 1][route: {s}->https://wordsapiv1.p.rapidapi.com:443][total available: 0; route allocated: 1 of 2; total allocated: 1 of 20]
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522099 ] - [ DEBUG ] Opening connection {s}->https://wordsapiv1.p.rapidapi.com:443
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522169 ] - [ DEBUG ] Connecting to wordsapiv1.p.rapidapi.com/52.28.41.5:443
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522169 ] - [ DEBUG ] Connecting socket to wordsapiv1.p.rapidapi.com/52.28.41.5:443 with timeout 0
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522185 ] - [ DEBUG ] Enabled protocols: [TLSv1.3, TLSv1.2]
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522185 ] - [ DEBUG ] Enabled cipher suites:[TLS_AES_256_GCM_SHA384, TLS_AES_128_GCM_SHA256, TLS_CHACHA20_POLY1305_SHA256, TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384, TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256, TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384, TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256, TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, TLS_DHE_RSA_WITH_AES_256_GCM_SHA384, TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256, TLS_DHE_DSS_WITH_AES_256_GCM_SHA384, TLS_DHE_RSA_WITH_AES_128_GCM_SHA256, TLS_DHE_DSS_WITH_AES_128_GCM_SHA256, TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384, TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384, TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256, TLS_DHE_RSA_WITH_AES_256_CBC_SHA256, TLS_DHE_DSS_WITH_AES_256_CBC_SHA256, TLS_DHE_RSA_WITH_AES_128_CBC_SHA256, TLS_DHE_DSS_WITH_AES_128_CBC_SHA256, TLS_ECDH_ECDSA_WITH_AES_256_GCM_SHA384, TLS_ECDH_RSA_WITH_AES_256_GCM_SHA384, TLS_ECDH_ECDSA_WITH_AES_128_GCM_SHA256, TLS_ECDH_RSA_WITH_AES_128_GCM_SHA256, TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA384, TLS_ECDH_RSA_WITH_AES_256_CBC_SHA384, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA256, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA256, TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA, TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_RSA_WITH_AES_256_CBC_SHA, TLS_DHE_DSS_WITH_AES_256_CBC_SHA, TLS_DHE_RSA_WITH_AES_128_CBC_SHA, TLS_DHE_DSS_WITH_AES_128_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA, TLS_ECDH_RSA_WITH_AES_256_CBC_SHA, TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA, TLS_ECDH_RSA_WITH_AES_128_CBC_SHA, TLS_RSA_WITH_AES_256_GCM_SHA384, TLS_RSA_WITH_AES_128_GCM_SHA256, TLS_RSA_WITH_AES_256_CBC_SHA256, TLS_RSA_WITH_AES_128_CBC_SHA256, TLS_RSA_WITH_AES_256_CBC_SHA, TLS_RSA_WITH_AES_128_CBC_SHA, TLS_EMPTY_RENEGOTIATION_INFO_SCSV]
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522186 ] - [ DEBUG ] Starting handshake
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522236 ] - [ DEBUG ] Secure session established
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522236 ] - [ DEBUG ]  negotiated protocol: TLSv1.2
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522236 ] - [ DEBUG ]  negotiated cipher suite: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522236 ] - [ DEBUG ]  peer principal: CN=*.p.rapidapi.com
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522236 ] - [ DEBUG ]  peer alternative names: [*.p.rapidapi.com]
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522236 ] - [ DEBUG ]  issuer principal: CN=Amazon RSA 2048 M02, O=Amazon, C=US
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522237 ] - [ DEBUG ] Connection established 192.168.1.49:42158<->52.28.41.5:443
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522237 ] - [ DEBUG ] Executing request GET /words/hi/definitions HTTP/1.1
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522237 ] - [ DEBUG ] Target auth state: UNCHALLENGED
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522237 ] - [ DEBUG ] Proxy auth state: UNCHALLENGED
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522237 ] - [ DEBUG ] http-outgoing-1 >> GET /words/hi/definitions HTTP/1.1
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522237 ] - [ DEBUG ] http-outgoing-1 >> x-rapidapi-key: 4eca314a24msh01ca7c7cc4be4e7p143556jsn5318d093a358
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522238 ] - [ DEBUG ] http-outgoing-1 >> x-rapidapi-host: wordsapiv1.p.rapidapi.com
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522238 ] - [ DEBUG ] http-outgoing-1 >> Host: wordsapiv1.p.rapidapi.com
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522238 ] - [ DEBUG ] http-outgoing-1 >> Connection: Keep-Alive
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522238 ] - [ DEBUG ] http-outgoing-1 >> User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.9)
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522238 ] - [ DEBUG ] http-outgoing-1 >> Accept-Encoding: gzip,deflate
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522238 ] - [ DEBUG ] http-outgoing-1 >> "GET /words/hi/definitions HTTP/1.1[\r][\n]"
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522238 ] - [ DEBUG ] http-outgoing-1 >> "x-rapidapi-key: 4eca314a24msh01ca7c7cc4be4e7p143556jsn5318d093a358[\r][\n]"
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522238 ] - [ DEBUG ] http-outgoing-1 >> "x-rapidapi-host: wordsapiv1.p.rapidapi.com[\r][\n]"
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522238 ] - [ DEBUG ] http-outgoing-1 >> "Host: wordsapiv1.p.rapidapi.com[\r][\n]"
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522239 ] - [ DEBUG ] http-outgoing-1 >> "Connection: Keep-Alive[\r][\n]"
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522239 ] - [ DEBUG ] http-outgoing-1 >> "User-Agent: Apache-HttpClient/4.5.13 (Java/17.0.9)[\r][\n]"
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522239 ] - [ DEBUG ] http-outgoing-1 >> "Accept-Encoding: gzip,deflate[\r][\n]"
+2024-05-24 22:55:50 [ http-bio-8080-exec-6:522239 ] - [ DEBUG ] http-outgoing-1 >> "[\r][\n]"
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522881 ] - [ DEBUG ] http-outgoing-1 << "HTTP/1.1 200 OK[\r][\n]"
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522882 ] - [ DEBUG ] http-outgoing-1 << "Date: Fri, 24 May 2024 20:55:51 GMT[\r][\n]"
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522882 ] - [ DEBUG ] http-outgoing-1 << "Content-Type: application/json; charset=utf-8[\r][\n]"
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522882 ] - [ DEBUG ] http-outgoing-1 << "Transfer-Encoding: chunked[\r][\n]"
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522882 ] - [ DEBUG ] http-outgoing-1 << "Connection: keep-alive[\r][\n]"
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522882 ] - [ DEBUG ] http-outgoing-1 << "ETag: W/"d1-bN4SoPUKFBxqN5nrL2X8sA"[\r][\n]"
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522882 ] - [ DEBUG ] http-outgoing-1 << "Content-Encoding: gzip[\r][\n]"
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522883 ] - [ DEBUG ] http-outgoing-1 << "NEL: {"success_fraction":0,"report_to":"cf-nel","max_age":604800}[\r][\n]"
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522883 ] - [ DEBUG ] http-outgoing-1 << "Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=RzRq1qIpaQgHmCk2XjHugnGZT5G1CLaL0LXcHzUVawkAj2ZgEA0fG8jJhIwaSTXGWOzb0CzY2JfPbr4bE%2FnZYqWIly3Pl7TSJ9k888hZG5xfJMgvv%2B0Axi1zrs5URsNWcPYK"}],"group":"cf-nel","max_age":604800}[\r][\n]"
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522883 ] - [ DEBUG ] http-outgoing-1 << "X-Powered-By: Express[\r][\n]"
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522883 ] - [ DEBUG ] http-outgoing-1 << "alt-svc: h3=":443"; ma=86400[\r][\n]"
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522883 ] - [ DEBUG ] http-outgoing-1 << "CF-RAY: 8890305d59da3a49-FRA[\r][\n]"
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522883 ] - [ DEBUG ] http-outgoing-1 << "CF-Cache-Status: DYNAMIC[\r][\n]"
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522884 ] - [ DEBUG ] http-outgoing-1 << "X-RateLimit-requests-Limit: 2500[\r][\n]"
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522884 ] - [ DEBUG ] http-outgoing-1 << "X-RateLimit-requests-Remaining: 2465[\r][\n]"
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522884 ] - [ DEBUG ] http-outgoing-1 << "X-RateLimit-requests-Reset: 50740[\r][\n]"
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522884 ] - [ DEBUG ] http-outgoing-1 << "Server: RapidAPI-1.2.8[\r][\n]"
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522884 ] - [ DEBUG ] http-outgoing-1 << "X-RapidAPI-Version: 1.2.8[\r][\n]"
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522884 ] - [ DEBUG ] http-outgoing-1 << "X-RapidAPI-Region: AWS - eu-central-1[\r][\n]"
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522884 ] - [ DEBUG ] http-outgoing-1 << "[\r][\n]"
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522885 ] - [ DEBUG ] http-outgoing-1 << "9e[\r][\n]"
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522885 ] - [ DEBUG ] http-outgoing-1 << "[0x1f][0x8b][0x8][0x0][0x0][0x0][0x0][0x0][0x0][0x3]t[0xcd]A[\n]"
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522885 ] - [ DEBUG ] http-outgoing-1 << "[0x2]1[0xc][0x85][0xe1][0xab][0x84][0xac]{[0x82][0x9e]@W[\n]"
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522885 ] - [ DEBUG ] http-outgoing-1 << "[0x83]+q[0x11][0xda]t[0x1a][0x18][0xd2][0xd2]DF[0x18][0xe6][0xee]""[0x88][0xe0][0xf2]}[0x8b][0xf7]o[0xb8][0xb6][0x91]1b[0x15][0xc][0x98][0xb9][0x88][0x8a]KS[0xc3]x[0xdd][0xbe]6F$0'g[0x10][0x5][0xaf][0xc][0x17][0x15][0xe7][0xc][0xd3][0xcb][0xec][0x83][0x89][0xd5][0x7]-p[0xa6]$E[0x12][0xb4]7[0x1f]h%[0x11]R8[0xda]B[0x9a][\r][0x3]v[0x1a]~*SgN[0x15]#j[0xbb]+[0xee][0xe1]7[0xa9][0xc0][0x8f]>[0xd8]L[0x9a]B+0[0xf]f[0x17][0x9d][0xff][0x1d][0xdc][0xf6]'[0x0][0x0][0x0][0xff][0xff][0x3][0x0][0x1e][0x1c][0xd7][0xd1][0x0][0x0][0x0][\r][\n]"
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522885 ] - [ DEBUG ] http-outgoing-1 << HTTP/1.1 200 OK
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522885 ] - [ DEBUG ] http-outgoing-1 << Date: Fri, 24 May 2024 20:55:51 GMT
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522885 ] - [ DEBUG ] http-outgoing-1 << Content-Type: application/json; charset=utf-8
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522886 ] - [ DEBUG ] http-outgoing-1 << Transfer-Encoding: chunked
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522886 ] - [ DEBUG ] http-outgoing-1 << Connection: keep-alive
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522886 ] - [ DEBUG ] http-outgoing-1 << ETag: W/"d1-bN4SoPUKFBxqN5nrL2X8sA"
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522886 ] - [ DEBUG ] http-outgoing-1 << Content-Encoding: gzip
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522886 ] - [ DEBUG ] http-outgoing-1 << NEL: {"success_fraction":0,"report_to":"cf-nel","max_age":604800}
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522886 ] - [ DEBUG ] http-outgoing-1 << Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=RzRq1qIpaQgHmCk2XjHugnGZT5G1CLaL0LXcHzUVawkAj2ZgEA0fG8jJhIwaSTXGWOzb0CzY2JfPbr4bE%2FnZYqWIly3Pl7TSJ9k888hZG5xfJMgvv%2B0Axi1zrs5URsNWcPYK"}],"group":"cf-nel","max_age":604800}
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522886 ] - [ DEBUG ] http-outgoing-1 << X-Powered-By: Express
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522886 ] - [ DEBUG ] http-outgoing-1 << alt-svc: h3=":443"; ma=86400
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522886 ] - [ DEBUG ] http-outgoing-1 << CF-RAY: 8890305d59da3a49-FRA
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522886 ] - [ DEBUG ] http-outgoing-1 << CF-Cache-Status: DYNAMIC
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522887 ] - [ DEBUG ] http-outgoing-1 << X-RateLimit-requests-Limit: 2500
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522887 ] - [ DEBUG ] http-outgoing-1 << X-RateLimit-requests-Remaining: 2465
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522887 ] - [ DEBUG ] http-outgoing-1 << X-RateLimit-requests-Reset: 50740
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522887 ] - [ DEBUG ] http-outgoing-1 << Server: RapidAPI-1.2.8
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522887 ] - [ DEBUG ] http-outgoing-1 << X-RapidAPI-Version: 1.2.8
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522887 ] - [ DEBUG ] http-outgoing-1 << X-RapidAPI-Region: AWS - eu-central-1
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522887 ] - [ DEBUG ] Connection can be kept alive indefinitely
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522888 ] - [ DEBUG ] http-outgoing-1 << "0[\r][\n]"
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522889 ] - [ DEBUG ] http-outgoing-1 << "[\r][\n]"
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522889 ] - [ DEBUG ] Connection [id: 1][route: {s}->https://wordsapiv1.p.rapidapi.com:443] can be kept alive indefinitely
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522889 ] - [ DEBUG ] http-outgoing-1: set socket timeout to 0
+2024-05-24 22:55:51 [ http-bio-8080-exec-6:522889 ] - [ DEBUG ] Connection released: [id: 1][route: {s}->https://wordsapiv1.p.rapidapi.com:443][total available: 1; route allocated: 1 of 2; total allocated: 1 of 20]

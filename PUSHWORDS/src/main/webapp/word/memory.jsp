@@ -61,7 +61,7 @@
         }
 
         .table tr:hover {
-            background-color: #ddd;
+            background-color: rgba(0,0,0,0);
         }
 
         .button {
@@ -388,18 +388,18 @@
         <table class="table">
             <thead>
             <tr>
-                <th>Title</th>
-                <th>Content</th>
-                <th>Publication Time</th>
-                <th>Actions</th>
+                <th style="color: rgb(248,246,231)">Title</th>
+                <th style="color: rgb(248,246,231)">Content</th>
+                <th style="color: rgb(248,246,231)">Publication Time</th>
+                <th style="color: rgb(248,246,231)">Actions</th>
             </tr>
             </thead>
             <tbody>
             <c:forEach items="${page.dataList}" var="word">
                 <tr>
-                    <td>${word.title}</td>
-                    <td>${word.content}</td>
-                    <td><fmt:formatDate value="${word.pubTime}" pattern="yyyy-MM-dd" /></td>
+                    <td style="color: rgb(248,246,231)">${word.title}</td>
+                    <td style="color: rgb(248,246,231)">${word.content}</td>
+                    <td style="color: rgb(248,246,231)"><fmt:formatDate value="${word.pubTime}" pattern="yyyy-MM-dd" /></td>
                     <td>
                         <button class="button" onclick="editWord(${word.wordId}, '${word.title}', '${word.content}')">Edit</button>
                         <button class="button delete" onclick="deleteWord(${word.wordId}, ${param.groupId})">Delete</button>

@@ -675,7 +675,7 @@
         <br>
         <img src="./statics/images/HAOTIAN.jpg" width="20%" alt="HAOTIAN"/>
         <p style="color:rgb(248,246,231);">Haotian XUE</p>
-        <p style="color:rgb(248,246,231);">Address Email</p>
+        <p style="color:rgb(248,246,231);">Haotian.XUE@etu.sorbonne-universite.fr</p>
         <br>
         <img src="./statics/images/HEJUN.jpg" width="20%" alt="HEJUN"/>
         <p style="color:rgb(248,246,231);">Hejun CAO</p>

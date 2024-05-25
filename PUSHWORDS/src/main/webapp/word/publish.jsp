@@ -570,7 +570,7 @@
                 -webkit-transform: rotate(405deg);
                 transform: rotate(405deg);
             }
-        }
+        }No Group exists!
     </style>
 </head>
 <body>
@@ -621,8 +621,8 @@
     <!-- La zone de contenu principal -->
     <div class="container">
         <c:if test="${empty groupList}">
-            <h2>No Group exists!</h2>
-            <h4><a href="group?actionName=list">Add Group</a></h4>
+            <h2 style="color: rgb(248,246,231)">No Group exists!</h2>
+            <h4><a style="color: rgb(248,246,231)" href="group?actionName=list">Add Group</a></h4>
         </c:if>
 
         <c:if test="${not empty groupList}">

@@ -88,7 +88,7 @@
             box-sizing: border-box;
             min-height: calc(100vh - 200px); /* Adjusted for new margin top */
             overflow-y: auto;
-            z-index: 2000;
+            z-index: 1055;
             position: relative;
             border-radius: 10px; /* 可选，增加圆角 */
         }

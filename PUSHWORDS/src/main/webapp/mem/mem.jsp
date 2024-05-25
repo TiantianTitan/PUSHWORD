@@ -645,7 +645,7 @@
 
     <div id="myDiv">
         <c:if test="${empty groupList}">
-            <h2> No data Found! </h2>
+            <h2 style="color: rgb(248,246,231)"> No data Found! </h2>
         </c:if>
         <c:if test="${!empty groupList}">
             <div class="cards-container">
