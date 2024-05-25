@@ -57,7 +57,7 @@
         }
 
         .table tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color: rgba(0,0,0,0);
         }
 
         .table tr:hover {

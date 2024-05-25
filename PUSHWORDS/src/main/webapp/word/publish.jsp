@@ -193,6 +193,7 @@
             left: calc(50% - 150px);
             -webkit-animation-delay: 8971ms;
             animation-delay: 8971ms;
+
         }
 
         .shooting_star:nth-child(1)::before,
@@ -698,7 +699,7 @@
                         $("#definition").append(new Option(item.definition, item.definition));
                     });
                     $("#definition").prop("selectedIndex", 1); // Select the first definition
-                    $("#msg").html("Translation successful.").css("color", "green");
+                    $("#msg").html("<br>Translation successful.").css("color", "green");
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.error("Translation error: " + textStatus + " - " + errorThrown);
