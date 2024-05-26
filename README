@@ -1,0 +1,173 @@
+# Site Web de Mémorisation de Vocabulaire
+
+Autheur: Haotian XUE (21305395), Hejun CAO (21304526)
+
+## Introduction
+Ce projet est une plateforme en ligne dédiée à la mémorisation de vocabulaire, conçue pour aider les utilisateurs à améliorer et tester leurs compétences en vocabulaire. Le site permet aux utilisateurs de gérer leurs comptes, de créer et gérer des groupes de vocabulaire, d'ajouter et d'éditer des mots, et de tester leurs connaissances.
+
+## Fonctionnalités
+- **Gestion des utilisateurs** : Inscription, connexion, modification des informations personnelles, et déconnexion.
+- **Gestion des groupes de vocabulaire** : Création, visualisation, modification et suppression de groupes de vocabulaire.
+- **Gestion du vocabulaire** : Ajout, visualisation, modification et suppression de mots dans des groupes spécifiques.
+- **Apprentissage et test** : Évaluation de la mémorisation via des tests de vocabulaire aléatoires et affichage des résultats.
+- **Analyse des résultats des tests** : Consultation de l'historique des tests et des analyses détaillées des données.
+
+## Configuration du Projet
+### Prérequis
+- Java 17 ou plus récent
+- Apache Maven
+- Tomcat
+- MySQL
+
+### Installation
+1. Clonez le dépôt :
+    ```bash
+    git clone https://github.com/TiantianTitan/XC_PC3R_PROJET.git
+    cd votre-projet
+    ```
+
+2. Configurez la base de données MySQL :
+    ```sql
+    CREATE DATABASE vocabulaire_db;
+    CREATE USER 'utilisateur'@'localhost' IDENTIFIED BY 'motdepasse';
+    GRANT ALL PRIVILEGES ON vocabulaire_db.* TO 'utilisateur'@'localhost';
+    FLUSH PRIVILEGES;
+    ```
+
+3. Mettez à jour les informations de connexion dans le fichier `src/main/resources/application.properties`.
+
+4. Compilez et empaquetez le projet avec Maven :
+    ```bash
+    mvn clean package
+    ```
+
+5. Déployez le fichier WAR généré dans Tomcat.
+
+6. Démarrez Tomcat et accédez au site web via `http://localhost:8080/login.jsp`.
+
+## Utilisation
+1. **Inscription et Connexion** : Inscrivez-vous pour créer un compte, puis connectez-vous pour accéder aux fonctionnalités du site.
+2. **Gestion des Groupes de Vocabulaire** : Créez des groupes de vocabulaire pour organiser vos mots.
+3. **Gestion des Mots** : Ajoutez des mots dans les groupes, éditez-les ou supprimez-les selon vos besoins.
+4. **Apprentissage et Tests** : Utilisez les fonctionnalités d'apprentissage pour mémoriser les mots, puis testez vos connaissances avec les tests proposés.
+5. **Analyse des Résultats** : Consultez vos résultats de tests et analysez vos performances pour voir vos progrès.
+
+## Intégration de WordsAPI
+Pour utiliser WordsAPI dans ce projet :
+1. **Obtenir la clé API** :
+   Inscrivez-vous sur le site officiel de WordsAPI et obtenez une clé API.
+
+2. **Configurer les Requêtes Backend** :
+   Utilisez le backend Java pour envoyer des requêtes HTTP à WordsAPI en utilisant `HttpURLConnection` ou une bibliothèque similaire.
+
+3. **Analyser les Réponses API** :
+   Utilisez des bibliothèques telles que `Jackson` ou `Gson` pour convertir les réponses JSON en objets Java.
+
+4. **Intégrer le Frontend** :
+   Le frontend appelle les interfaces fournies par le backend pour obtenir les données de vocabulaire et les afficher.
+
+## Contribution
+Les contributions sont les bienvenues ! Si vous avez des idées d'amélioration ou des corrections à apporter, veuillez créer une issue ou soumettre une pull request.
+
+## Licence
+Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus d'informations.
+
+---
+
+Merci d'utiliser notre plateforme de mémorisation de vocabulaire ! Nous espérons qu'elle vous aidera à améliorer vos compétences linguistiques.
+
+
+## Annexe
+Code pour créer les tables de database:
+
+-- Create the table
+CREATE TABLE tb_user (
+    userId INT AUTO_INCREMENT PRIMARY KEY,
+    uname VARCHAR(50),
+    upwd VARCHAR(50),
+    nick VARCHAR(50),
+    head VARCHAR(50),
+    mood VARCHAR(255)
+);
+
+-- Insert the data
+INSERT INTO tb_user (uname, upwd, nick, head, mood) VALUES
+('admin', 'root1234', 'adminhaha', '404.gif', "C'est pas mal"),
+('JaneDoe', 'abcd', 'Jane', 'JaneDoe.jpeg', 'Happy Happy Happy'),
+('root', 'root1234', 'root', 'zoe.jpeg', 'ByeBye'),
+('Zoe', 'abcd', 'LittleStar', 'zoe.jpeg', 'Bye Bye lady lazy'),
+('Zoe', 'abcd', 'LittleStar', '404.jpg', 'Hello world!');
+
+
+-- Create the table
+CREATE TABLE tb_group (
+    groupId INT AUTO_INCREMENT PRIMARY KEY,
+    groupName VARCHAR(50),
+    groupDescription VARCHAR(255),
+    groupUserId INT
+);
+
+-- Insert the data
+INSERT INTO tb_group (groupName, groupDescription, groupUserId) VALUES
+('Physique', 'The physical words', 2),
+('Physiques', 'The physical words', 1),
+('maths', 'the math words', 1),
+('Informatique', 'The informational words', 1);
+
+
+
+-- Create the table
+CREATE TABLE tb_test_result (
+    resultId INT AUTO_INCREMENT PRIMARY KEY,
+    userId INT,
+    groupId INT,
+    totalWords INT,
+    correctAnswers INT,
+    accuracy INT,
+    timeTaken INT,
+    testDate DATETIME
+);
+
+-- Insert the data
+INSERT INTO tb_test_result (userId, groupId, totalWords, correctAnswers, accuracy, timeTaken, testDate) VALUES
+(1, 4, 2, 2, 100, 2, '2024-05-24 18:21:00'),
+(1, 4, 2, 1, 50, 1, '2024-05-24 18:31:00'),
+(1, 2, 2, 0, 0, 0, '2024-05-24 18:39:00'),
+(5, 4, 2, 2, 100, 4, '2024-05-24 22:34:00'),
+(12, 23, 1, 1, 100, 1, '2024-05-24 22:43:00'),
+(12, 23, 1, 1, 100, 1, '2024-05-25 21:23:00');
+
+
+
+-- Create the table
+CREATE TABLE tb_word (
+    wordId INT AUTO_INCREMENT PRIMARY KEY,
+    groupId INT,
+    title VARCHAR(255),
+    content VARCHAR(255),
+    pubtime DATETIME
+);
+
+-- Insert the data
+INSERT INTO tb_word (groupId, title, content, pubtime) VALUES
+(3, 'héééééé', 'Hazazé', '2024-05-17 17:52:47'),
+(6, 'qsdq', 'qsd', '2024-05-17 17:56:04'),
+(4, 'qsdq', 'qfgg', '2024-05-17 17:56:08'),
+(3, 'Hello', 'Bonjour', '2024-05-21 13:16:27'),
+(3, 'speed', 'vitesse', '2024-05-21 17:37:12'),
+(3, 'test', 'test 2', '2024-05-21 17:37:54'),
+(3, 'Yes or ...', 'or', '2024-05-21 17:39:14'),
+(13, 'Hi', 'Hiii', '2024-05-21 18:35:27'),
+(3, 'testé', 'ééééé', '2024-05-21 19:46:44'),
+(3, '&(&"&(', '&"&', '2024-05-21 19:46:49'),
+(3, 'Second', 'second', '2024-05-21 19:46:53'),
+(3, 'GoGoGo', 'Allez Allez...', '2024-05-21 19:47:23'),
+(3, 'IF', 'SI', '2024-05-21 19:47:35'),
+(3, 'good lu...', 'bonne ch...', '2024-05-21 19:47:46'),
+(3, 'Patience', 'patience', '2024-05-21 19:52:57'),
+(3, 'Hey', 'hey', '2024-05-21 16:03:54'),
+(3, 'Good lu...', 'Good luck', '2024-05-21 16:04:04'),
+(3, 'Système', 'system', '2024-05-21 16:04:10'),
+(4, '1+1', 'end', '2024-05-24 14:48:46'),
+(3, 'the sta...', 'the state...', '2024-05-24 14:48:48'),
+(3, 'a state in ...', 'an expres...', '2024-05-24 14:48:58');
