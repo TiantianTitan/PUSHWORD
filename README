@@ -20,15 +20,13 @@ Ce projet est une plateforme en ligne dédiée à la mémorisation de vocabulair
 - Tomcat
 - MySQL
 
-![Demo](path/to/your.gif)
-
 ## Le lien sur Youtube:
 https://www.youtube.com/watch?v=HoqGnWABtAY
 
 ### Installation
 1. Clonez le dépôt :
     ```bash
-    git clone https://github.com/TiantianTitan/XC_PC3R_PROJET.git
+    git clone https://github.com/TiantianTitan/PUSHWORD.git
     cd votre-projet
     ```
 
