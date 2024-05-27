@@ -1,6 +1,7 @@
 # Site Web de Mémorisation de Vocabulaire
 
-Autheur: Haotian XUE (21305395), Hejun CAO (21304526)
+Autheur: Haotian XUE, Hejun CAO 
+(Sorbonne Université)
 
 ## Introduction
 Ce projet est une plateforme en ligne dédiée à la mémorisation de vocabulaire, conçue pour aider les utilisateurs à améliorer et tester leurs compétences en vocabulaire. Le site permet aux utilisateurs de gérer leurs comptes, de créer et gérer des groupes de vocabulaire, d'ajouter et d'éditer des mots, et de tester leurs connaissances.
@@ -18,6 +19,11 @@ Ce projet est une plateforme en ligne dédiée à la mémorisation de vocabulair
 - Apache Maven
 - Tomcat
 - MySQL
+
+![Demo](path/to/your.gif)
+
+## Le lien sur Youtube:
+https://www.youtube.com/watch?v=HoqGnWABtAY
 
 ### Installation
 1. Clonez le dépôt :
